@@ -19,12 +19,19 @@
         }
 
         #quiz-container {
+            display: flex; /* Flexbox für die Anordnung des Logos und der Fragen nebeneinander */
+            align-items: center; /* Zentriert das Logo und die Fragen vertikal */
             width: 90%;
-            max-width: 600px;
+            max-width: 700px; /* Gesamtbreite des Containers */
             background-color: #444; /* Etwas helleres Grau für den Quiz-Hintergrund */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .question-section {
+            margin-left: 40px; /* Mehr Abstand zwischen Logo und Fragen */
+            max-width: 700px; /* Reduziert die Breite des Fragenteils */
         }
 
         .question-container {
@@ -58,13 +65,24 @@
             background-color: #387689;
         }
 
+        
         #logo {
             display: block;
             margin: 0 auto 20px; /* Zentriert das Logo und fügt unten einen Abstand hinzu */
             max-width: 150px; /* Maximale Breite für das Logo */
         }
 
-        
+        footer {
+            font-size: 12px;
+            color: #aaa;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            background-color: #222; /* Dunklerer Hintergrund für den Footer */
+            position: fixed; /* Fixiert den Footer am unteren Rand */
+            bottom: 0;
+            left: 0;
+        }
     </style>
 </head>
 <body>
@@ -120,7 +138,13 @@
             <p id="summary"></p> <!-- Hier wird die Zusammenfassung angezeigt -->
         </div>
     </div>
-
+       <!-- Impressum am Ende der Seite -->
+       <footer>
+        <p>Impressum:</p>
+        <p>Testseite, wird nachgetragen<br>
+        E-Mail: koehler@nat.hamburg</p>
+    </footer>
+    
     <script>
         document.getElementById('question1').style.display = 'block'; // Zeigt die erste Frage initial an
 
@@ -170,5 +194,6 @@
             document.getElementById('finalMessage').style.display = 'block'; // Zeige die Zusammenfassung
         }
     </script>
+
 </body>
 </html>
