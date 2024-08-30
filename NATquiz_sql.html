@@ -86,18 +86,28 @@
             background-color: #387689;
         }
     
-            footer {
-                font-size: 12px;
-                color: #aaa;
-                text-align: center;
-                padding: 10px;
-                width: 100%;
-                background-color: #222; /* Dunklerer Hintergrund für den Footer */
-                margin-top: auto; /* Stößt den Footer an das untere Ende */
-                position: fixed; /* Fixiert den Footer am unteren Rand */
-                bottom: 0;
-                left: 0;
-            }
+        footer {
+            font-size: 12px;
+            color: #aaa;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            background-color: #222; /* Dunklerer Hintergrund für den Footer */
+            margin-top: auto; /* Stößt den Footer an das untere Ende */
+            position: fixed; /* Fixiert den Footer am unteren Rand */
+            bottom: 0;
+            left: 0;
+        }
+        footer a {
+            color: #387689; /* Neue Farbe für die Links im Footer */
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         </style>
 </head>
 <body>
@@ -164,10 +174,8 @@
         </div>
     </div>
        <!-- Impressum am Ende der Seite -->
-       <footer>
-        <p>Impressum:</p>
-        <p>Testseite, wird nachgetragen<br>
-        E-Mail: koehler@nat.hamburg</p>
+       <<footer>
+        <a href="https://www.nat.hamburg/impressum">Impressum</a> | <a href="https://www.nat.hamburg/datenschutz">Datenschutz</a>
     </footer>
     
     <script>
