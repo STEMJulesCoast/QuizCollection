@@ -1,6 +1,6 @@
 
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="de">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +27,7 @@
                 top: 0;
                 left: 0;
                 z-index: -1; /* Hintergrundebene unter dem restlichen Inhalt */
-        }
+            }
 
             #header {
                 position: absolute;
@@ -55,59 +55,96 @@
             }
 
 
-        .question-container {
-            display: none; /* initially hidden */
-        }
+            .question-container {
+                display: none; /* initially hidden */
+            }
 
-        .question {
-            margin-bottom: 20px;
-        }
+            .question {
+                margin-bottom: 20px;
+            }
 
-        .options {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
+            .options {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
 
-        .options li {
-            margin-bottom: 10px;
-        }
+            .options li {
+                margin-bottom: 10px;
+            }
 
-        button {
-            background-color: #387689;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+            button {
+                background-color: #387689;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
 
-        button:hover {
-            background-color: #387689;
-        }
-    
-        footer {
-            font-size: 12px;
-            color: #aaa;
-            text-align: center;
-            padding: 10px;
-            width: 100%;
-            background-color: #222; /* Dunklerer Hintergrund für den Footer */
-            margin-top: auto; /* Stößt den Footer an das untere Ende */
-            position: fixed; /* Fixiert den Footer am unteren Rand */
-            bottom: 0;
-            left: 0;
-        }
-        footer a {
-            color: #387689; /* Neue Farbe für die Links im Footer */
-            text-decoration: none;
-            margin: 0 5px;
-        }
+            button:hover {
+                background-color: #387689;
+            }
+        
+            footer {
+                font-size: 12px;
+                color: #aaa;
+                text-align: center;
+                padding: 10px;
+                width: 100%;
+                background-color: #222; /* Dunklerer Hintergrund für den Footer */
+                margin-top: auto; /* Stößt den Footer an das untere Ende */
+                position: fixed; /* Fixiert den Footer am unteren Rand */
+                bottom: 0;
+                left: 0;
+            }
+            footer a {
+                color: #387689; /* Neue Farbe für die Links im Footer */
+                text-decoration: none;
+                margin: 0 5px;
+            }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+            footer a:hover {
+                text-decoration: underline;
+            }
 
+            
+            .modal {
+                display: none; /* Standardmäßig verborgen */
+                position: fixed; /* Über die gesamte Seite legen */
+                z-index: 1000; /* Höherer Wert, damit es über allen anderen Inhalten liegt */
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund für Abdunkelung */
+            }
+
+            .modal-content {
+                background-color: #fefefe;
+                margin: 15% auto; /* Zentriert das Modal auf der Seite */
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%;
+                max-width: 600px; /* Maximale Breite für das Modal */
+                position: relative; /* Relativ zum Container */
+                color: black; /* Stellt sicher, dass der Text im Modal sichtbar ist */
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Schatten für Tiefenwirkung */
+            }
+
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+            }
         </style>
 </head>
 <body>
@@ -174,11 +211,41 @@
         </div>
     </div>
        <!-- Impressum am Ende der Seite -->
-       <<footer>
-        <a href="https://www.nat.hamburg/impressum">Impressum</a> | <a href="https://www.nat.hamburg/datenschutz">Datenschutz</a>
+    <footer>
+        <!-- Impressum und Datenschutz Links -->
+        <p>
+            <a href="https://www.nat.hamburg/impressum">Impressum</a> | 
+            <a href="https://www.nat.hamburg/datenschutz">Datenschutz</a> | 
+            <a href="#" onclick="openModal(); return false;">Hinweis zu GitHub Pages</a>
+        </p>
     </footer>
     
+    <!-- Modal für GitHub Pages Datenschutzhinweise -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Diese Webseite wird auf GitHub Pages gehostet. GitHub kann grundlegende Nutzungsdaten wie IP-Adressen und Referrer-Informationen für Betriebs- und Wartungszwecke sammeln. Weitere Informationen finden Sie in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">Datenschutzerklärung von GitHub</a>.</p>
+        </div>
+    </div>
+    
+   
+
     <script>
+        function openModal() {
+            document.getElementById('privacy-modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('privacy-modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById('privacy-modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
         document.getElementById('question1').style.display = 'block'; // Zeigt die erste Frage initial an
 
         // Speichert die Antworten des Benutzers
