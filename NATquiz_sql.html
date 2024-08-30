@@ -1,38 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iNATquiz SQL</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #333; /* Dunkles Grau für den Hintergrund */
-            color: white; /* Weiße Schriftfarbe */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Gesamte Höhe des Viewports */
-            box-sizing: border-box;
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iNAT SQL - Teste dein Wissen</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #333; /* Dunkles Grau für den Hintergrund */
+                color: white; /* Weiße Schriftfarbe */
+                display: flex;
+                flex-direction: column; /* Stellt sicher, dass alles vertikal gestapelt ist */
+                align-items: center; /* Zentriert den Inhalt horizontal */
+                min-height: 100vh; /* Gesamte Höhe des Viewports */
+                box-sizing: border-box;
+                position: relative;
+            }
+
+            #svg-background {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: -1; /* Hintergrundebene unter dem restlichen Inhalt */
         }
 
-        #quiz-container {
-            display: flex; /* Flexbox für die Anordnung des Logos und der Fragen nebeneinander */
-            align-items: center; /* Zentriert das Logo und die Fragen vertikal */
-            width: 90%;
-            max-width: 700px; /* Gesamtbreite des Containers */
-            background-color: #444; /* Etwas helleres Grau für den Quiz-Hintergrund */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
+            #header {
+                position: absolute;
+                top: 10%; /* Positioniert das Logo im oberen Drittel der Seite */
+                left: 50%;
+                transform: translateX(-50%); /* Zentriert das Logo horizontal */
+            }
 
-        .question-section {
-            margin-left: 40px; /* Mehr Abstand zwischen Logo und Fragen */
-            max-width: 700px; /* Reduziert die Breite des Fragenteils */
-        }
+            #logo {
+                max-width: 150px; /* Maximale Breite für das Logo */
+            }
+
+            #quiz-container {
+                position: absolute;
+                top: 50%; /* Positioniert die Quizbox in der Mitte der Seite */
+                left: 50%;
+                transform: translate(-50%, -50%); /* Zentriert die Quizbox horizontal und vertikal */
+                width: 90%;
+                max-width: 600px;
+                background-color: #444; /* Etwas helleres Grau für den Quiz-Hintergrund */
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                text-align: left; /* Text linksbündig im Container */
+            }
+
 
         .question-container {
             display: none; /* initially hidden */
@@ -64,28 +85,32 @@
         button:hover {
             background-color: #387689;
         }
-
-        
-        #logo {
-            display: block;
-            margin: 0 auto 20px; /* Zentriert das Logo und fügt unten einen Abstand hinzu */
-            max-width: 150px; /* Maximale Breite für das Logo */
-        }
-
-        footer {
-            font-size: 12px;
-            color: #aaa;
-            text-align: center;
-            padding: 10px;
-            width: 100%;
-            background-color: #222; /* Dunklerer Hintergrund für den Footer */
-            position: fixed; /* Fixiert den Footer am unteren Rand */
-            bottom: 0;
-            left: 0;
-        }
-    </style>
+    
+            footer {
+                font-size: 12px;
+                color: #aaa;
+                text-align: center;
+                padding: 10px;
+                width: 100%;
+                background-color: #222; /* Dunklerer Hintergrund für den Footer */
+                margin-top: auto; /* Stößt den Footer an das untere Ende */
+                position: fixed; /* Fixiert den Footer am unteren Rand */
+                bottom: 0;
+                left: 0;
+            }
+        </style>
 </head>
 <body>
+      <!-- SVG-Grafik als Hintergrund -->
+    <svg id="svg-background">
+        <!-- Kreise mit Rahmen und Hex-Farbcodes -->
+        <circle cx="500" cy="200" r="500" fill="none" stroke="#8BC34A" stroke-width=".5" />
+        <circle cx="550" cy="450" r="300" fill="none" stroke="#2196F3" stroke-width=".5" />
+        <circle cx="650" cy="700" r="140" fill="none" stroke="#607D8B" stroke-width=".5" />
+        <circle cx="750" cy="650" r="50" fill="none" stroke="#2196F3" stroke-width=".5" />
+        
+    </svg>
+
     <!-- Logo-Einfügung -->
     <img id="logo" src="NAT_Logo.png" alt="Logo"> <!--Logo-Pfad -->
 
