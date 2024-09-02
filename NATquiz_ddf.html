@@ -162,6 +162,12 @@
                 vertical-align: sub; /* Setzt den tiefgestellten Text auf eine untere Linie */
                 line-height: 0; /* Reduziert den Zeilenabstand für einen kompakteren Look */
                 }
+
+            @media only screen and (max-width: 600px) {
+                .superscript {
+                    bottom: -0.1em; /* Leicht angepasste Position für kleinere Bildschirme */
+                }
+            }
         </style>
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
