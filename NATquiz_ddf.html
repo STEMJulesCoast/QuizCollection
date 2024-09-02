@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>iNAT SQL - Teste dein Wissen</title>
+        <title>iNAT CO2-Emissionen - Teste dein Wissen</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -71,6 +71,17 @@
 
             .options li {
                 margin-bottom: 10px;
+                line-height: 1.5; /* Erhöht die Zeilenhöhe für mehr Abstand zwischen den Zeilen */
+                display: flex; /* Flexbox für eine saubere Ausrichtung */
+                align-items: flex-start; /* Stellt sicher, dass der Inhalt oben beginnt */
+            }
+
+            .options li input {
+                margin-right: 10px; /* Fügt Abstand zwischen Radio-Button und Text ein */
+            }
+
+            .options li span {
+                display: block; /* Behandelt den Text als Block, um die Einrückung zu unterstützen */
             }
 
             button {
@@ -147,6 +158,7 @@
             }
         </style>
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
 </head>
 <body>
       <!-- SVG-Grafik als Hintergrund -->
@@ -165,26 +177,26 @@
     <div id="quiz-container">
         <div class="question-container" id="question1">
             <div class="question">
-                <h2>Frage 1: Welche SQL-Anweisung wird verwendet, um Daten in eine Datenbanktabelle einzufügen?</h2>
+                <h2>Frage 1: Welches dieser Länder hat seit 1970 die höchste Menge an CO₂-Emissionen verursacht?</h2>
                 <ul class="options">
-                    <li><input type="radio" name="q1" value="A"> A) SELECT</li>
-                    <li><input type="radio" name="q1" value="B"> B) INSERT</li>
-                    <li><input type="radio" name="q1" value="C"> C) UPDATE</li>
-                    <li><input type="radio" name="q1" value="D"> D) DELETE</li>
+                    <li><input type="radio" name="q1" value="A"> A) China</li>
+                    <li><input type="radio" name="q1" value="B"> B) Deutschland</li>
+                    <li><input type="radio" name="q1" value="C"> C) USA</li>
+                    <li><input type="radio" name="q1" value="D"> D) Frankreich</li>
                 </ul>
             </div>
-            <button onclick="checkAnswer('q1', 'B', 'question1', 'question2')">Submit</button>
+            <button onclick="checkAnswer('q1', 'C', 'question1', 'question2')">Submit</button>
             <p id="result1"></p>
         </div>
 
         <div class="question-container" id="question2">
             <div class="question">
-                <h2>Frage 2: Welche SQL-Funktion wird verwendet, um die Anzahl der Zeilen in einer Tabelle zu zählen?</h2>
+                <h2>Frage 2: Welche Methode wird häufig verwendet, um CO₂-Emissionen einer Gemeinschaft zu überwachen?</h2>
                 <ul class="options">
-                    <li><input type="radio" name="q2" value="A"> A) SUM()</li>
-                    <li><input type="radio" name="q2" value="B"> B) COUNT()</li>
-                    <li><input type="radio" name="q2" value="C"> C) MAX()</li>
-                    <li><input type="radio" name="q2" value="D"> D) AVG()</li>
+                    <li><input type="radio" name="q2" value="A"> <span>A) Durch eine Umfrage.</span></li>
+                    <li><input type="radio" name="q2" value="B"> <span>B) Durch die Berechnung der Emissionen aus dem Energieverbrauch und Verkehrsdaten.</span></li>
+                    <li><input type="radio" name="q2" value="C"> <span>C) Durch die Zählung der Autos auf den Straßen.</span></li>
+                    <li><input type="radio" name="q2" value="D"> <span>D) Durch die Beobachtung der Wetteränderungen.</span></li>
                 </ul>
             </div>
             <button onclick="checkAnswer('q2', 'B', 'question2', 'question3')">Submit</button>
@@ -193,16 +205,44 @@
 
         <div class="question-container" id="question3">
             <div class="question">
-                <h2>Frage 3: Welche SQL-Klausel wird verwendet, um die Ergebnisse einer Abfrage zu sortieren und welche, um die Ergebnisse zu filtern?</h2>
+                <h2>Frage 3: Was sind die 'Shared Socioeconomic Pathways' (SSPs)?</h2>
                 <ul class="options">
-                    <li><input type="radio" name="q3" value="A"> A) ORDER BY und FILTER</li>
-                    <li><input type="radio" name="q3" value="B"> B) GROUP BY und WHERE</li>
-                    <li><input type="radio" name="q3" value="C"> C) ORDER BY und WHERE</li>
-                    <li><input type="radio" name="q3" value="D"> D) SORT BY und LIMIT</li>
+                    <li><input type="radio" name="q3" value="A"> <span>A) Modelle, die verschiedene Szenarien für zukünftige CO₂-Emissionen und deren Auswirkungen auf das Klima darstellen.</span></li>
+                    <li><input type="radio" name="q3" value="B"> <span>B) Eine neue Art von Solarzellen, die CO₂-Emissionen reduzieren.</span></li>
+                    <li><input type="radio" name="q3" value="C"> <span>C) Ein Gesetz zur Reduktion von Treibhausgasen.</span></li>
+                    <li><input type="radio" name="q3" value="D"> <span>D)  Ein Programm zur Förderung von Elektroautos.</span></li>
                 </ul>
             </div>
-            <button onclick="checkAnswer('q3', 'C', 'question3', '')">Submit</button>
+            <button onclick="checkAnswer('q3', 'A', 'question3', 'question4')">Submit</button>
             <p id="result3"></p>
+        </div>
+
+        <div class="question-container" id="question4">
+            <div class="question">
+                <h2>Frage 4: Was ist ein Emissionsfakor?</h2>
+                <ul class="options">
+                    <li><input type="radio" name="q4" value="A"> <span>A) Ein Gerät zur Messung der CO₂-Konzentration in der Luft.</span></li>
+                    <li><input type="radio" name="q4" value="B"> <span>B) Eine Methode zur Speicherung von CO₂.</span></li>
+                    <li><input type="radio" name="q4" value="C"> <span>C) Ein Gesetz zur Begrenzung von CO₂-Emissionen</span></li>
+                    <li><input type="radio" name="q4" value="D"> <span>D) Ein Wert, der angibt, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt wird.</span></li>
+                </ul>
+            </div>
+            <button onclick="checkAnswer('q4', 'D', 'question4', 'question5')">Submit</button>
+            <p id="result4"></p>
+        </div>
+
+        <div class="question-container" id="question5">
+            <div class="question">
+                <h2>Frage 5: Welche Rolle spielt die Datenanalyse bei der Reduktion von CO₂-Emissionen?</h2>
+                <ul class="options">
+                    <li><input type="radio" name="q5" value="A"> <span>A) Sie hilft, den Energieverbrauch zu erhöhen.</span></li>
+                    <li><input type="radio" name="q5" value="B"> <span>B) Sie ermöglicht es, die Hauptquellen der Emissionen zu identifizieren und gezielte Reduktionsstrategien zu entwickeln.</span></li>
+                    <li><input type="radio" name="q5" value="C"> <span>C) Sie sorgt für die Reduktion von Plastiktüten in der Schule.</span></li>
+                    <li><input type="radio" name="q5" value="D"> <span>D) Sie dient zur Überprüfung der Schulnoten im Fach Mathematik.</span></li>
+                </ul>
+            </div>
+            <button onclick="checkAnswer('q5', 'B', 'question5', '')">Submit</button>
+            <p id="result5"></p>
         </div>
 
         <!-- Bereich für die Zusammenfassung -->
@@ -249,7 +289,7 @@
 
         document.getElementById('question1').style.display = 'block'; // Zeigt die erste Frage initial an
 
-        // Speichert die Antworten des Benutzers
+        // Speichert die Antworten 
         const userAnswers = {};
 
         function checkAnswer(questionName, correctAnswer, currentQuestionId, nextQuestionId) {
@@ -258,10 +298,43 @@
             
             if (selectedOption) {
                 const userAnswer = selectedOption.value;
-                userAnswers[questionName] = userAnswer; // Speichere die Antwort des Benutzers
+                userAnswers[questionName] = userAnswer; // Speichere die Antwort
 
+                // Erklärungstexte für jede Frage
+                let correctMessage;
+                let incorrectMessage;
+
+                switch (questionName) {
+                    case 'q1':
+                        correctMessage = 'Das ist richtig! Die höchsten CO₂-Emissionen verursachen die USA. Weiter unten findest du eine Grafik der Top 10 Emittenten zum Vergleich.';
+                        incorrectMessage = 'Leider falsch. Die richtige Antwort ist C: Die USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.';
+                        break;
+                    case 'q2':
+                        correctMessage = 'Richtig: Die Berechnung der Emissionen aus dem Energieverbrauch und Verkehrsdaten ist eine häufig verwendete Methode zur Überwachung von CO₂-Emissionen.';
+                        incorrectMessage = 'Leider falsch. Die richtige Antwort ist B: Durch die Berechnung der Emissionen aus dem Energieverbrauch und Verkehrsdaten.';
+                        break;
+                    case 'q3':
+                        correctMessage = 'Richtig: Die "Shared Socioeconomic Pathways" (SSPs) stellen verschiedene Szenarien für zukünftige CO₂-Emissionen dar.';
+                        incorrectMessage = 'Leider falsch. Die richtige Antwort ist A: Modelle, die verschiedene Szenarien für zukünftige CO₂-Emissionen und deren Auswirkungen auf das Klima darstellen.';
+                        break;
+                    case 'q4':
+                        correctMessage = 'Richtig: Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.';
+                        incorrectMessage = 'Leider falsch. Die richtige Antwort ist D: Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.';
+                        break;
+                    case 'q5':
+                        correctMessage = 'Richtig: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren und gezielte Reduktionsstrategien zu entwickeln.';
+                        incorrectMessage = 'Leider falsch. Die richtige Antwort ist B: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren.';
+                        break;
+                    default:
+                        correctMessage = 'Richtig!';
+                        incorrectMessage = 'Leider falsch.';
+                        break;
+                }
+
+                // Zeige die passende Nachricht an
                 if (userAnswer === correctAnswer) {
-                    result.textContent = 'Richtig!';
+                    result.textContent = correctMessage;
+
                     // Konfetti bei richtiger Antwort anzeigen
                     confetti({
                         particleCount: 100,
@@ -271,10 +344,10 @@
                     });
 
                 } else {
-                    result.textContent = `Leider falsch. Die richtige Antwort ist ${correctAnswer}.`;
+                    result.textContent = incorrectMessage;
                 }
                 
-                // Nach 1,5 Sekunden zur nächsten Frage wechseln
+                // Nach 3,5 Sekunden zur nächsten Frage wechseln
                 setTimeout(() => {
                     document.getElementById(currentQuestionId).style.display = 'none';
                     
@@ -283,21 +356,24 @@
                     } else {
                         showSummary(); // Zeige die Zusammenfassung
                     }
-                }, 1500); // nach 1,5 Sekunden Verzögerung vor der Anzeige der nächsten Frage
+                }, 3500); // 3,5 Sekunden Verzögerung vor der Anzeige der nächsten Frage
             } else {
                 alert("Wähle eine Antwort aus.");
             }
         }
 
+
         function showSummary() {
             const summary = document.getElementById('summary');
             summary.innerHTML = '<h3>Deine Antworten:</h3>';
             
-            // Übersicht der Antworten anzeigen
+            // Übersicht der Antworten mit dynamischen Texten
             summary.innerHTML += `
-                <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'B' ? 'Richtig' : 'Leider falsch (Richtig: INSERT)'}</p>
-                <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'B' ? 'Richtig' : 'Leider falsch  (Richtig: COUNT())'}</p>
-                <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'C' ? 'Richtig' : 'Leider falsch  (Richtig: ORDER BY und WHERE)'}</p>
+                <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'C' ? 'Richtig: Die USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.' : 'Leider falsch. Die richtige Antwort ist C: USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.'}</p>
+                <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'B' ? 'Richtig: Die Berechnung der Emissionen aus Energieverbrauch und Verkehrsdaten ist eine häufig verwendete Methode zur Überwachung von CO₂-Emissionen.' : 'Leider falsch. Die richtige Antwort ist B: Berechnung der Emissionen aus Energieverbrauch und Verkehrsdaten.'}</p>
+                <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'A' ? 'Richtig: Die "Shared Socioeconomic Pathways" (SSPs) stellen verschiedene Szenarien für zukünftige CO₂-Emissionen dar.' : 'Leider falsch. Die richtige Antwort ist A: Modelle, die Szenarien für zukünftige CO₂-Emissionen darstellen.'}</p>
+                <p>Frage 4: Deine Antwort: ${userAnswers['q4']} - ${userAnswers['q4'] === 'D' ? 'Richtig: Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.':'Leider falsch.Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.'}</p>
+                <p>Frage 5: Deine Antwort: ${userAnswers['q5']} - ${userAnswers['q5'] === 'B' ? 'Richtig: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren und gezielte Reduktionsstrategien zu entwickeln.' : 'Leider falsch. Die richtige Antwort ist B: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren.'}</p>
             `;
 
             document.getElementById('finalMessage').style.display = 'block'; // Zeige die Zusammenfassung
