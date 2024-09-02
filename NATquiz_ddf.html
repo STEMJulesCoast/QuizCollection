@@ -156,6 +156,12 @@
                 color: black;
                 text-decoration: none;
             }
+
+            .subscript {
+                font-size: 0.7em; /* Passt die Größe des tiefgestellten Textes an */
+                vertical-align: sub; /* Setzt den tiefgestellten Text auf eine untere Linie */
+                line-height: 0; /* Reduziert den Zeilenabstand für einen kompakteren Look */
+                }
         </style>
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
@@ -177,7 +183,7 @@
     <div id="quiz-container">
         <div class="question-container" id="question1">
             <div class="question">
-                <h2>Frage 1: Welches dieser Länder hat seit 1970 die höchste Menge an CO₂-Emissionen verursacht?</h2>
+                <h2>Frage 1: Welches dieser Länder hat seit 1970 die höchste Menge an  CO<sub class="subscript">2</sub>-Emissionen verursacht?</h2>
                 <ul class="options">
                     <li><input type="radio" name="q1" value="A"> A) China</li>
                     <li><input type="radio" name="q1" value="B"> B) Deutschland</li>
@@ -191,7 +197,7 @@
 
         <div class="question-container" id="question2">
             <div class="question">
-                <h2>Frage 2: Welche Methode wird häufig verwendet, um CO₂-Emissionen einer Gemeinschaft zu überwachen?</h2>
+                <h2>Frage 2: Wie werden CO<sub class="subscript">2</sub>-Emissionen einer Gemeinschaft häufig überwacht?</h2>
                 <ul class="options">
                     <li><input type="radio" name="q2" value="A"> <span>A) Durch eine Umfrage.</span></li>
                     <li><input type="radio" name="q2" value="B"> <span>B) Durch die Berechnung der Emissionen aus dem Energieverbrauch und Verkehrsdaten.</span></li>
@@ -207,8 +213,8 @@
             <div class="question">
                 <h2>Frage 3: Was sind die 'Shared Socioeconomic Pathways' (SSPs)?</h2>
                 <ul class="options">
-                    <li><input type="radio" name="q3" value="A"> <span>A) Modelle, die verschiedene Szenarien für zukünftige CO₂-Emissionen und deren Auswirkungen auf das Klima darstellen.</span></li>
-                    <li><input type="radio" name="q3" value="B"> <span>B) Eine neue Art von Solarzellen, die CO₂-Emissionen reduzieren.</span></li>
+                    <li><input type="radio" name="q3" value="A"> <span>A) Modelle, die verschiedene Szenarien für zukünftige CO<sub class="subscript">2</sub>-Emissionen und deren Auswirkungen auf das Klima darstellen.</span></li>
+                    <li><input type="radio" name="q3" value="B"> <span>B) Eine neue Art von Solarzellen, die CO<sub class="subscript">2</sub>-Emissionen reduzieren.</span></li>
                     <li><input type="radio" name="q3" value="C"> <span>C) Ein Gesetz zur Reduktion von Treibhausgasen.</span></li>
                     <li><input type="radio" name="q3" value="D"> <span>D)  Ein Programm zur Förderung von Elektroautos.</span></li>
                 </ul>
@@ -219,12 +225,12 @@
 
         <div class="question-container" id="question4">
             <div class="question">
-                <h2>Frage 4: Was ist ein Emissionsfakor?</h2>
+                <h2>Frage 4: Was ist ein Emissionsfaktor?</h2>
                 <ul class="options">
-                    <li><input type="radio" name="q4" value="A"> <span>A) Ein Gerät zur Messung der CO₂-Konzentration in der Luft.</span></li>
-                    <li><input type="radio" name="q4" value="B"> <span>B) Eine Methode zur Speicherung von CO₂.</span></li>
-                    <li><input type="radio" name="q4" value="C"> <span>C) Ein Gesetz zur Begrenzung von CO₂-Emissionen</span></li>
-                    <li><input type="radio" name="q4" value="D"> <span>D) Ein Wert, der angibt, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt wird.</span></li>
+                    <li><input type="radio" name="q4" value="A"> <span>A) Ein Gerät zur Messung der CO<sub class="subscript">2</sub>-Konzentration in der Luft.</span></li>
+                    <li><input type="radio" name="q4" value="B"> <span>B) Eine Methode zur Speicherung von CO<sub class="subscript">2</sub>.</span></li>
+                    <li><input type="radio" name="q4" value="C"> <span>C) Ein Gesetz zur Begrenzung von CO<sub class="subscript">2</sub>-Emissionen</span></li>
+                    <li><input type="radio" name="q4" value="D"> <span>D) Ein Wert, der angibt, wie viel CO<sub class="subscript">2</sub> bei der Nutzung einer bestimmten Energiequelle freigesetzt wird.</span></li>
                 </ul>
             </div>
             <button onclick="checkAnswer('q4', 'D', 'question4', 'question5')">Submit</button>
@@ -233,7 +239,7 @@
 
         <div class="question-container" id="question5">
             <div class="question">
-                <h2>Frage 5: Welche Rolle spielt die Datenanalyse bei der Reduktion von CO₂-Emissionen?</h2>
+                <h2>Frage 5: Welche Rolle spielt die Datenanalyse bei der Reduktion von CO<sub class="subscript">2</sub>-Emissionen?</h2>
                 <ul class="options">
                     <li><input type="radio" name="q5" value="A"> <span>A) Sie hilft, den Energieverbrauch zu erhöhen.</span></li>
                     <li><input type="radio" name="q5" value="B"> <span>B) Sie ermöglicht es, die Hauptquellen der Emissionen zu identifizieren und gezielte Reduktionsstrategien zu entwickeln.</span></li>
@@ -347,7 +353,7 @@
                     result.textContent = incorrectMessage;
                 }
                 
-                // Nach 3,5 Sekunden zur nächsten Frage wechseln
+                // Nach 3,9 Sekunden zur nächsten Frage wechseln
                 setTimeout(() => {
                     document.getElementById(currentQuestionId).style.display = 'none';
                     
@@ -356,7 +362,7 @@
                     } else {
                         showSummary(); // Zeige die Zusammenfassung
                     }
-                }, 3500); // 3,5 Sekunden Verzögerung vor der Anzeige der nächsten Frage
+                }, 3900); // 3,9 Sekunden Verzögerung vor der Anzeige der nächsten Frage
             } else {
                 alert("Wähle eine Antwort aus.");
             }
@@ -369,11 +375,11 @@
             
             // Übersicht der Antworten mit dynamischen Texten
             summary.innerHTML += `
-                <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'C' ? 'Richtig: Die USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.' : 'Leider falsch. Die richtige Antwort ist C: USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.'}</p>
-                <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'B' ? 'Richtig: Die Berechnung der Emissionen aus Energieverbrauch und Verkehrsdaten ist eine häufig verwendete Methode zur Überwachung von CO₂-Emissionen.' : 'Leider falsch. Die richtige Antwort ist B: Berechnung der Emissionen aus Energieverbrauch und Verkehrsdaten.'}</p>
-                <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'A' ? 'Richtig: Die "Shared Socioeconomic Pathways" (SSPs) stellen verschiedene Szenarien für zukünftige CO₂-Emissionen dar.' : 'Leider falsch. Die richtige Antwort ist A: Modelle, die Szenarien für zukünftige CO₂-Emissionen darstellen.'}</p>
-                <p>Frage 4: Deine Antwort: ${userAnswers['q4']} - ${userAnswers['q4'] === 'D' ? 'Richtig: Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.':'Leider falsch.Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.'}</p>
-                <p>Frage 5: Deine Antwort: ${userAnswers['q5']} - ${userAnswers['q5'] === 'B' ? 'Richtig: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren und gezielte Reduktionsstrategien zu entwickeln.' : 'Leider falsch. Die richtige Antwort ist B: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren.'}</p>
+                <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'C' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die richtige Antwort ist C: USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.'}</p>
+                <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die Berechnung der Emissionen aus Energieverbrauch und Verkehrsdaten ist eine häufig verwendete Methode zur Überwachung von CO₂-Emissionen.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die richtige Antwort ist B: Berechnung der Emissionen aus Energieverbrauch und Verkehrsdaten.'}</p>
+                <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'A' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die "Shared Socioeconomic Pathways" (SSPs) stellen verschiedene Szenarien für zukünftige CO₂-Emissionen dar.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die richtige Antwort ist A: Modelle, die Szenarien für zukünftige CO₂-Emissionen darstellen.'}</p>
+                <p>Frage 4: Deine Antwort: ${userAnswers['q4']} - ${userAnswers['q4'] === 'D' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.':'<span style="color: red;"><strong>Leider falsch.</strong></span> Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.'}</p>
+                <p>Frage 5: Deine Antwort: ${userAnswers['q5']} - ${userAnswers['q5'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren und gezielte Reduktionsstrategien zu entwickeln.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die richtige Antwort ist B: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren.'}</p>
             `;
 
             document.getElementById('finalMessage').style.display = 'block'; // Zeige die Zusammenfassung

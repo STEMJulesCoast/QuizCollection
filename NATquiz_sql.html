@@ -295,13 +295,20 @@
             
             // Übersicht der Antworten anzeigen
             summary.innerHTML += `
-                <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'B' ? 'Richtig' : 'Leider falsch (Richtig: INSERT)'}</p>
-                <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'B' ? 'Richtig' : 'Leider falsch  (Richtig: COUNT())'}</p>
-                <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'C' ? 'Richtig' : 'Leider falsch  (Richtig: ORDER BY und WHERE)'}</p>
+                <p>Frage 1: <strong>Welche SQL-Anweisung wird verwendet, um Daten in eine Datenbanktabelle einzufügen?</strong></p>
+                <p>Deine Antwort: <em>${userAnswers['q1']}</em> - ${userAnswers['q1'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span> Gut gemacht, die <strong>INSERT</strong>-Anweisung wird verwendet, um neue Daten in eine Tabelle einzufügen.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die korrekte Antwort ist <strong>INSERT</strong>.'}</p>
+                
+                <p>Frage 2: <strong>Welche SQL-Funktion wird verwendet, um die Anzahl der Zeilen in einer Tabelle zu zählen?</strong></p>
+                <p>Deine Antwort: <em>${userAnswers['q2']}</em> - ${userAnswers['q2'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span> Genau, die <strong>COUNT()</strong>-Funktion zählt die Anzahl der Zeilen in einer Tabelle.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die richtige Antwort ist <strong>COUNT()</strong>.'}</p>
+                
+                <p>Frage 3: <strong>Welche SQL-Klausel wird verwendet, um die Ergebnisse einer Abfrage zu sortieren und welche, um die Ergebnisse zu filtern?</strong></p>
+                <p>Deine Antwort: <em>${userAnswers['q3']}</em> - ${userAnswers['q3'] === 'C' ? '<span style="color: #387689;"><strong>Richtig!</strong></span> Gut gemacht! <strong>ORDER BY</strong> sortiert die Ergebnisse, und <strong>WHERE</strong> filtert sie.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die korrekte Antwort ist <strong>ORDER BY und WHERE</strong>.'}</p>
             `;
 
+        
             document.getElementById('finalMessage').style.display = 'block'; // Zeige die Zusammenfassung
         }
+
     </script>
 
 </body>
