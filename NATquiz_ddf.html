@@ -164,7 +164,7 @@
                 }
 
             @media only screen and (max-width: 600px) {
-                .superscript {
+                .subscript {
                     bottom: -0.1em; /* Leicht angepasste Position für kleinere Bildschirme */
                 }
             }
@@ -189,7 +189,7 @@
     <div id="quiz-container">
         <div class="question-container" id="question1">
             <div class="question">
-                <h2>Frage 1: Welches dieser Länder hat seit 1970 die höchste Menge an  CO<sub class="subscript">2</sub>-Emissionen verursacht?</h2>
+                <h2>Frage 1: Welches dieser Länder hat kumulativ seit 1970 die höchste Menge CO<sub class="subscript">2</sub>-Emissionen verursacht?</h2>
                 <ul class="options">
                     <li><input type="radio" name="q1" value="A"> A) China</li>
                     <li><input type="radio" name="q1" value="B"> B) Deutschland</li>
@@ -199,6 +199,7 @@
             </div>
             <button onclick="checkAnswer('q1', 'C', 'question1', 'question2')">Submit</button>
             <p id="result1"></p>
+            <button onclick="showNextQuestion('question1', 'question2')" id="next1" style="display:none;">Weiter</button>
         </div>
 
         <div class="question-container" id="question2">
@@ -213,6 +214,7 @@
             </div>
             <button onclick="checkAnswer('q2', 'B', 'question2', 'question3')">Submit</button>
             <p id="result2"></p>
+            <button onclick="showNextQuestion('question2', 'question3')" id="next2" style="display:none;">Weiter</button>
         </div>
 
         <div class="question-container" id="question3">
@@ -222,11 +224,12 @@
                     <li><input type="radio" name="q3" value="A"> <span>A) Modelle, die verschiedene Szenarien für zukünftige CO<sub class="subscript">2</sub>-Emissionen und deren Auswirkungen auf das Klima darstellen.</span></li>
                     <li><input type="radio" name="q3" value="B"> <span>B) Eine neue Art von Solarzellen, die CO<sub class="subscript">2</sub>-Emissionen reduzieren.</span></li>
                     <li><input type="radio" name="q3" value="C"> <span>C) Ein Gesetz zur Reduktion von Treibhausgasen.</span></li>
-                    <li><input type="radio" name="q3" value="D"> <span>D)  Ein Programm zur Förderung von Elektroautos.</span></li>
+                    <li><input type="radio" name="q3" value="D"> <span>D) Ein Programm zur Förderung von Elektroautos.</span></li>
                 </ul>
             </div>
             <button onclick="checkAnswer('q3', 'A', 'question3', 'question4')">Submit</button>
             <p id="result3"></p>
+            <button onclick="showNextQuestion('question3', 'question4')" id="next3" style="display:none;">Weiter</button>
         </div>
 
         <div class="question-container" id="question4">
@@ -241,6 +244,7 @@
             </div>
             <button onclick="checkAnswer('q4', 'D', 'question4', 'question5')">Submit</button>
             <p id="result4"></p>
+            <button onclick="showNextQuestion('question4', 'question5')" id="next4" style="display:none;">Weiter</button>
         </div>
 
         <div class="question-container" id="question5">
@@ -255,6 +259,7 @@
             </div>
             <button onclick="checkAnswer('q5', 'B', 'question5', '')">Submit</button>
             <p id="result5"></p>
+            <button onclick="showNextQuestion('question5', '')" id="next5" style="display:none;">Zusammenfassung</button>
         </div>
 
         <!-- Bereich für die Zusammenfassung -->
@@ -318,23 +323,23 @@
 
                 switch (questionName) {
                     case 'q1':
-                        correctMessage = 'Das ist richtig! Die höchsten CO₂-Emissionen verursachen die USA. Weiter unten findest du eine Grafik der Top 10 Emittenten zum Vergleich.';
-                        incorrectMessage = 'Leider falsch. Die richtige Antwort ist C: Die USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.';
+                        correctMessage = 'Das ist richtig!';
+                        incorrectMessage = 'Leider falsch. Die richtige Antwort ist C: Kumulativ haben bisher die USA die höchsten CO₂-Emissionen verursacht.';
                         break;
                     case 'q2':
-                        correctMessage = 'Richtig: Die Berechnung der Emissionen aus dem Energieverbrauch und Verkehrsdaten ist eine häufig verwendete Methode zur Überwachung von CO₂-Emissionen.';
+                        correctMessage = 'Richtig!';
                         incorrectMessage = 'Leider falsch. Die richtige Antwort ist B: Durch die Berechnung der Emissionen aus dem Energieverbrauch und Verkehrsdaten.';
                         break;
                     case 'q3':
-                        correctMessage = 'Richtig: Die "Shared Socioeconomic Pathways" (SSPs) stellen verschiedene Szenarien für zukünftige CO₂-Emissionen dar.';
-                        incorrectMessage = 'Leider falsch. Die richtige Antwort ist A: Modelle, die verschiedene Szenarien für zukünftige CO₂-Emissionen und deren Auswirkungen auf das Klima darstellen.';
+                        correctMessage = 'Richtig!';
+                        incorrectMessage = 'Leider falsch. Die richtige Antwort ist A: Modelle, die verschiedene Szenarien für zukünftige Emissionen und deren Auswirkungen auf das Klima darstellen.';
                         break;
                     case 'q4':
-                        correctMessage = 'Richtig: Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.';
+                        correctMessage = 'Richtig!';
                         incorrectMessage = 'Leider falsch. Die richtige Antwort ist D: Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.';
                         break;
                     case 'q5':
-                        correctMessage = 'Richtig: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren und gezielte Reduktionsstrategien zu entwickeln.';
+                        correctMessage = 'Glückwunsch, das ist richtig!';
                         incorrectMessage = 'Leider falsch. Die richtige Antwort ist B: Die Datenanalyse hilft, die Hauptquellen der Emissionen zu identifizieren.';
                         break;
                     default:
@@ -343,36 +348,37 @@
                         break;
                 }
 
-                // Zeige die passende Nachricht an
+                        // Zeige die passende Nachricht an und setze die Verzögerung
+             // Zeige die passende Nachricht an
                 if (userAnswer === correctAnswer) {
                     result.textContent = correctMessage;
-
-                    // Konfetti bei richtiger Antwort anzeigen
                     confetti({
                         particleCount: 100,
                         spread: 70,
                         origin: { y: 0.6 },
                         colors: ['#387689', '#B0DFF5', '#B0D39A', '#219653'] // Anpassbare Farben für Konfetti
                     });
-
                 } else {
                     result.textContent = incorrectMessage;
                 }
                 
-                // Nach 3,9 Sekunden zur nächsten Frage wechseln
-                setTimeout(() => {
-                    document.getElementById(currentQuestionId).style.display = 'none';
-                    
-                    if (nextQuestionId) {
-                        document.getElementById(nextQuestionId).style.display = 'block';
-                    } else {
-                        showSummary(); // Zeige die Zusammenfassung
-                    }
-                }, 3900); // 3,9 Sekunden Verzögerung vor der Anzeige der nächsten Frage
+                // Zeige den "Weiter"-Button an, nachdem die Antwort überprüft wurde
+                document.getElementById(`next${currentQuestionId.slice(-1)}`).style.display = 'block';
+
             } else {
                 alert("Wähle eine Antwort aus.");
             }
         }
+
+        function showNextQuestion(currentQuestionId, nextQuestionId) {
+            document.getElementById(currentQuestionId).style.display = 'none';
+            if (nextQuestionId) {
+                document.getElementById(nextQuestionId).style.display = 'block';
+            } else {
+                showSummary(); // Zeige die Zusammenfassung
+            }
+        }
+
 
 
         function showSummary() {
@@ -381,7 +387,7 @@
             
             // Übersicht der Antworten mit dynamischen Texten
             summary.innerHTML += `
-                <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'C' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die richtige Antwort ist C: USA haben seit 1970 die höchsten CO₂-Emissionen verursacht.'}</p>
+                <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'C' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die USA haben seit 1970 kumulativ die höchsten CO₂-Emissionen verursacht.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die richtige Antwort ist C: USA haben seit 1970 kummulativ die höchsten CO₂-Emissionen verursacht.'}</p>
                 <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die Berechnung der Emissionen aus Energieverbrauch und Verkehrsdaten ist eine häufig verwendete Methode zur Überwachung von CO₂-Emissionen.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die richtige Antwort ist B: Berechnung der Emissionen aus Energieverbrauch und Verkehrsdaten.'}</p>
                 <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'A' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die "Shared Socioeconomic Pathways" (SSPs) stellen verschiedene Szenarien für zukünftige CO₂-Emissionen dar.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die richtige Antwort ist A: Modelle, die Szenarien für zukünftige CO₂-Emissionen darstellen.'}</p>
                 <p>Frage 4: Deine Antwort: ${userAnswers['q4']} - ${userAnswers['q4'] === 'D' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.':'<span style="color: red;"><strong>Leider falsch.</strong></span> Emissionsfaktoren geben an, wie viel CO₂ bei der Nutzung einer bestimmten Energiequelle freigesetzt werden.'}</p>

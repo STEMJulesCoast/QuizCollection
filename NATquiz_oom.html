@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iNAT Objektorientierte Modellierung - Teste dein Wissen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333; /* Dunkles Grau für den Hintergrund */
+            color: white; /* Weiße Schriftfarbe */
+            display: flex;
+            flex-direction: column; /* Stellt sicher, dass alles vertikal gestapelt ist */
+            align-items: center; /* Zentriert den Inhalt horizontal */
+            min-height: 100vh; /* Gesamte Höhe des Viewports */
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        #svg-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Hintergrundebene unter dem restlichen Inhalt */
+        }
+
+        #header {
+            position: absolute;
+            top: 10%; /* Positioniert das Logo im oberen Drittel der Seite */
+            left: 50%;
+            transform: translateX(-50%); /* Zentriert das Logo horizontal */
+        }
+
+        #logo {
+            max-width: 150px; /* Maximale Breite für das Logo */
+        }
+
+        #quiz-container {
+            position: absolute;
+            top: 50%; /* Positioniert die Quizbox in der Mitte der Seite */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Zentriert die Quizbox horizontal und vertikal */
+            width: 90%;
+            max-width: 600px;
+            background-color: #444; /* Etwas helleres Grau für den Quiz-Hintergrund */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: left; /* Text linksbündig im Container */
+        }
+
+
+        .question-container {
+            display: none; /* initially hidden */
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .options li {
+            margin-bottom: 10px;
+            line-height: 1.5; /* Erhöht die Zeilenhöhe für mehr Abstand zwischen den Zeilen */
+            display: flex; /* Flexbox für eine saubere Ausrichtung */
+            align-items: flex-start; /* Stellt sicher, dass der Inhalt oben beginnt */
+        }
+
+        .options li input {
+            margin-right: 10px; /* Fügt Abstand zwischen Radio-Button und Text ein */
+        }
+
+        .options li span {
+            display: block; /* Behandelt den Text als Block, um die Einrückung zu unterstützen */
+        }
+
+        button {
+            background-color: #387689;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #387689;
+        }
+    
+        footer {
+            font-size: 12px;
+            color: #aaa;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            background-color: #222; /* Dunklerer Hintergrund für den Footer */
+            margin-top: auto; /* Stößt den Footer an das untere Ende */
+            position: fixed; /* Fixiert den Footer am unteren Rand */
+            bottom: 0;
+            left: 0;
+        }
+        footer a {
+            color: #387689; /* Neue Farbe für die Links im Footer */
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        
+        .modal {
+            display: none; /* Standardmäßig verborgen */
+            position: fixed; /* Über die gesamte Seite legen */
+            z-index: 1000; /* Höherer Wert, damit es über allen anderen Inhalten liegt */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund für Abdunkelung */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* Zentriert das Modal auf der Seite */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px; /* Maximale Breite für das Modal */
+            position: relative; /* Relativ zum Container */
+            color: black; /* Stellt sicher, dass der Text im Modal sichtbar ist */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Schatten für Tiefenwirkung */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        .subscript {
+            font-size: 0.7em; /* Passt die Größe des tiefgestellten Textes an */
+            vertical-align: sub; /* Setzt den tiefgestellten Text auf eine untere Linie */
+            line-height: 0; /* Reduziert den Zeilenabstand für einen kompakteren Look */
+            }
+
+        @media only screen and (max-width: 600px) {
+            .subscript {
+                bottom: -0.1em; /* Leicht angepasste Position für kleinere Bildschirme */
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+</head>
+<body>
+  <!-- SVG-Grafik als Hintergrund -->
+<svg id="svg-background">
+    <!-- Kreise mit Rahmen und Hex-Farbcodes -->
+    <circle cx="500" cy="200" r="500" fill="none" stroke="#387689" stroke-width=".7" />
+    <circle cx="550" cy="450" r="300" fill="none" stroke="#B0DFF5" stroke-width=".7" />
+    <circle cx="650" cy="700" r="140" fill="none" stroke="#B0D39A" stroke-width=".7" />
+    <circle cx="750" cy="650" r="50" fill="none" stroke="#2196F3" stroke-width=".7" />
+    
+</svg>
+
+<!-- Logo-Einfügung -->
+<img id="logo" src="NAT_Logo.png" alt="Logo"> <!--Logo-Pfad -->
+
+<div id="quiz-container">
+    <div class="question-container" id="question1">
+        <div class="question">
+            <h2>Frage 1: Warum ist die objektorientierte Modellierung besonders geeignet für die Verwaltung komplexer Systeme?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q1" value="A"> A) Sie entfernt automatisch alle Fehler.</li>
+                <li><input type="radio" name="q1" value="B"> <span>B) Sie zerlegt komplexe Systeme in einzelne, miteinander interagierende Objekte, die einfacher zu verstehen und zu handhaben sind.</span></li>
+                <li><input type="radio" name="q1" value="C"> C) Sie erhöht die Komplexität des Systems.</li>
+                <li><input type="radio" name="q1" value="D"> D) Sie ersetzt die Programmierarbeit durch künstliche Intelligenz.</li>
+            </ul>
+        </div>
+        <button onclick="checkAnswer('q1', 'B', 'question1', 'question2')">Submit</button>
+        <p id="result1"></p>
+        <button onclick="showNextQuestion('question1', 'question2')" id="next1" style="display:none;">Weiter</button>
+    </div>
+
+    <div class="question-container" id="question2">
+        <div class="question">
+            <h2>Frage 2: Welche der folgenden Aussagen beschreibt die Beziehung zwischen Klassen und Objekten in der objektorientierten Modellierung am besten?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q2" value="A"> <span>A) Eine Klasse ist der Bauplan für ein Objekt.</span></li>
+                <li><input type="radio" name="q2" value="B"> <span>B) Eine Klasse ist eine spezifische Instanz eines Objekts.</span></li>
+                <li><input type="radio" name="q2" value="C"> <span>C) Ein Objekt definiert die Struktur und das Verhalten einer Klasse.</span></li>
+                <li><input type="radio" name="q2" value="D"> <span>D) Klassen und Objekte sind immer identisch.</span></li>
+            </ul>
+        </div>
+        <button onclick="checkAnswer('q2', 'A', 'question2', 'question3')">Submit</button>
+        <p id="result2"></p>
+        <button onclick="showNextQuestion('question2', 'question3')" id="next2" style="display:none;">Weiter</button>
+    </div>
+
+    <div class="question-container" id="question3">
+        <div class="question">
+            <h2>Frage 3: Welche der folgenden Prinzipien gehören zu den Kernprinzipien sowohl der objektorientierten Modellierung als auch der objektorientierten Programmierung?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q3" value="A"> <span>A) Zentralisierung und Optimierung</span></li>
+                <li><input type="radio" name="q3" value="B"> <span>B) Abstraktion, Kapselung, Vererbung und Polymorphismus</span></li>
+                <li><input type="radio" name="q3" value="C"> <span>C) Randomisierung und Hierarchisierung</span></li>
+                <li><input type="radio" name="q3" value="D"> <span>D) Modularisierung und Komplexitätsreduktion</span></li>
+            </ul>
+        </div>
+        <button onclick="checkAnswer('q3', 'B', 'question3', 'question4')">Submit</button>
+        <p id="result3"></p>
+        <button onclick="showNextQuestion('question3', 'question4')" id="next3" style="display:none;">Weiter</button>
+    </div>
+
+    <div class="question-container" id="question4">
+        <div class="question">
+            <h2>Frage 4: Was bedeutet Polymorphismus in der objektorientierten Programmierung?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q4" value="A"> <span>A) Eine Methode kann in verschiedenen Klassen unterschiedlich implementiert werden, obwohl sie denselben Namen hat.</span></li>
+                <li><input type="radio" name="q4" value="B"> <span>B) Eine Methode ist in jeder Klasse identisch.</span></li>
+                <li><input type="radio" name="q4" value="C"> <span>C) Eine Methode kann in verschiedenen Klassen unterschiedlich implementiert werden, obwohl sie denselben Namen hat.</span></li>
+                <li><input type="radio" name="q4" value="D"> <span>D) Polymorphismus bedeutet, dass alle Objekte gleich sind.</span></li>
+            </ul>
+        </div>
+        <button onclick="checkAnswer('q4', 'C', 'question4', 'question5')">Submit</button>
+        <p id="result4"></p>
+        <button onclick="showNextQuestion('question4', 'question5')" id="next4" style="display:none;">Weiter</button>
+    </div>
+
+    <div class="question-container" id="question5">
+        <div class="question">
+            <h2>Frage 5: Wie kann die objektorientierte Modellierung bei der Entwicklung und Wartung von Software helfen?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q5" value="A"> <span>A) Durch die Eliminierung aller Programmfehler.</span></li>
+                <li><input type="radio" name="q5" value="B"> <span>B) Durch die Reduzierung des Programmcodes auf einen einzigen Block.</span></li>
+                <li><input type="radio" name="q5" value="C"> <span>C) Durch die vollständige Automatisierung des Entwicklungsprozesses.</span></li>
+                <li><input type="radio" name="q5" value="D"> <span>D) Durch die Planung und Gestaltung einer modularen Struktur, die es ermöglicht, Änderungen an einzelnen Teilen des Systems vorzunehmen, ohne das gesamte System zu beeinträchtigen.</span></li>
+            </ul>
+        </div>
+        <button onclick="checkAnswer('q5', 'D', 'question5', '')">Submit</button>
+        <p id="result5"></p>
+        <button onclick="showNextQuestion('question5', '')" id="next5" style="display:none;">Zusammenfassung</button>
+    </div>
+
+    <!-- Bereich für die Zusammenfassung -->
+    <div id="finalMessage" style="display:none;">
+        <h2>Geschafft!</h2>
+        <p id="summary"></p> <!-- Hier wird die Zusammenfassung angezeigt -->
+    </div>
+</div>
+   <!-- Impressum am Ende der Seite -->
+<footer>
+    <!-- Impressum und Datenschutz Links -->
+    <p>
+        <a href="https://www.nat.hamburg/impressum">Impressum</a> | 
+        <a href="https://www.nat.hamburg/datenschutz">Datenschutz</a> | 
+        <a href="#" onclick="openModal(); return false;">Hinweis zu GitHub Pages</a>
+    </p>
+</footer>
+
+<!-- Modal für GitHub Pages Datenschutzhinweise -->
+<div id="privacy-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>Diese Webseite wird auf GitHub Pages gehostet. GitHub kann grundlegende Nutzungsdaten wie IP-Adressen und Referrer-Informationen für Betriebs- und Wartungszwecke sammeln. Weitere Informationen finden Sie in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">Datenschutzerklärung von GitHub</a>.</p>
+    </div>
+</div>
+
+
+
+<script>
+    function openModal() {
+        document.getElementById('privacy-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('privacy-modal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        var modal = document.getElementById('privacy-modal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+
+    document.getElementById('question1').style.display = 'block'; // Zeigt die erste Frage initial an
+
+    // Speichert die Antworten 
+    const userAnswers = {};
+
+    function checkAnswer(questionName, correctAnswer, currentQuestionId, nextQuestionId) {
+        const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+        const result = document.getElementById(`result${currentQuestionId.slice(-1)}`);
+        
+        if (selectedOption) {
+            const userAnswer = selectedOption.value;
+            userAnswers[questionName] = userAnswer; // Speichere die Antwort
+
+            // Erklärungstexte für jede Frage
+            let correctMessage;
+            let incorrectMessage;
+
+            switch (questionName) {
+                case 'q1':
+                    correctMessage = 'Das ist richtig!';
+                    incorrectMessage = 'Leider falsch. Die richtige Antwort ist B: OOM hilft, komplexe Systeme zu strukturieren und zu verwalten, indem es diese in verständliche und handhabbare Objekte aufteilt.';
+                    break;
+                case 'q2':
+                    correctMessage = 'Richtig!';
+                    incorrectMessage = 'Leider falsch. Die richtige Antwort ist A: Eine Klasse dient als Bauplan, aus dem konkrete Objekte mit spezifischen Eigenschaften und Verhaltensweisen erstellt werden.';
+                    break;
+                case 'q3':
+                    correctMessage = 'Richtig!';
+                    incorrectMessage = 'Leider falsch. Die richtige Antwort ist B: Beides basiert auf den Prinzipien Abstraktion, Kapselung, Vererbung und Polymorphismus, die die Organisation erleichtern können.';
+                    break;
+                case 'q4':
+                    correctMessage = 'Richtig!';
+                    incorrectMessage = 'Leider falsch. Die richtige Antwort ist C: Polymorphismus ermöglicht, dass die gleiche Methode in unterschiedlichen Klassen unterschiedlich funktioniert, abhängig vom Typ des Objekts.';
+                    break;
+                case 'q5':
+                    correctMessage = 'Glückwunsch, das ist richtig!';
+                    incorrectMessage = 'Leider falsch. Die richtige Antwort ist D: OOM hilft bei der Planung und Gestaltung eines Systems, indem sie die Struktur und Beziehungen zwischen den Objekten definiert. Diese Planung ermöglicht es, später durch OOP eine modular aufgebaute Software zu entwickeln, bei der Änderungen in einzelnen Modulen das gesamte System weniger beeinflussen.';
+                    break;
+                default:
+                    correctMessage = 'Richtig!';
+                    incorrectMessage = 'Leider falsch.';
+                    break;
+            }
+
+                 
+            // Zeige die passende Nachricht an
+            if (userAnswer === correctAnswer) {
+                    result.textContent = correctMessage;
+                    confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#387689', '#B0DFF5', '#B0D39A', '#219653'] // Anpassbare Farben für Konfetti
+                });
+            } else {
+                 result.textContent = incorrectMessage;
+            }
+                
+                // Zeige den "Weiter"-Button an, nachdem die Antwort überprüft wurde
+            document.getElementById(`next${currentQuestionId.slice(-1)}`).style.display = 'block';
+
+        } else {
+             alert("Wähle eine Antwort aus.");
+        }
+    }
+
+    function showNextQuestion(currentQuestionId, nextQuestionId) {
+        document.getElementById(currentQuestionId).style.display = 'none';
+        if (nextQuestionId) {
+            document.getElementById(nextQuestionId).style.display = 'block';
+        } else {
+            showSummary(); // Zeige die Zusammenfassung
+        }
+    }    
+
+
+    function showSummary() {
+        const summary = document.getElementById('summary');
+        summary.innerHTML = '<h3>Deine Antworten:</h3>';
+        
+        // Übersicht der Antworten mit dynamischen Texten
+        summary.innerHTML += `
+            <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: OOM hilft, komplexe Systeme zu strukturieren und zu verwalten.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist B: OOM hilft, komplexe Systeme zu strukturieren und zu verwalten.'}</p>
+            <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'A' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Eine Klasse dient als Bauplan.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist A: Eine Klasse dient als Bauplan.'}</p>
+            <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Abstraktion, Kapselung, Vererbung und Polymorphismus sind Kernprinzipien.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist B: Abstraktion, Kapselung, Vererbung, Polymorphismus.'}</p>
+            <p>Frage 4: Deine Antwort: ${userAnswers['q4']} - ${userAnswers['q4'] === 'C' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Polymorphismus rmöglicht gleiche Methode, unterschiedliche Funktionen je nach Objekttyp.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist C: Polymorphismus ermöglicht gleiche Methode, unterschiedliche Funktionen je nach Objekttyp'}</p>
+            <p>Frage 5: Deine Antwort: ${userAnswers['q5']} - ${userAnswers['q5'] === 'D' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: OOM erleichtert Wartung durch klare Strukturierung.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist D: Erleichtert Wartung durch Strukturierung.'}</p>
+        `;
+
+
+        document.getElementById('finalMessage').style.display = 'block'; // Zeige die Zusammenfassung
+    }
+</script>
+
+</body>
+</html>

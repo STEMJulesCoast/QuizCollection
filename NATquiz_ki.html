@@ -187,6 +187,7 @@
         </div>
         <button onclick="checkAnswer('q1', 'A', 'question1', 'question2')">Submit</button>
         <p id="result1"></p>
+        <button onclick="showNextQuestion('question1', 'question2')" id="next1" style="display:none;">Weiter</button>
     </div>
 
     <div class="question-container" id="question2">
@@ -199,6 +200,7 @@
         </div>
         <button onclick="checkAnswer('q2', 'B', 'question2', 'question3')">Submit</button>
         <p id="result2"></p>
+        <button onclick="showNextQuestion('question2', 'question3')" id="next2" style="display:none;">Weiter</button>
     </div>
 
     <div class="question-container" id="question3">
@@ -213,6 +215,7 @@
         </div>
         <button onclick="checkAnswer('q3', 'A', 'question3', '')">Submit</button>
         <p id="result3"></p>
+        <button onclick="showNextQuestion('question3', '')" id="next3" style="display:none;">Zusammenfassung</button>
     </div>
 
     <!-- Bereich für die Zusammenfassung -->
@@ -276,15 +279,15 @@
 
             switch (questionName) {
                 case 'q1':
-                    explanationCorrect = "Richtig! Supervised Learning oder überwachtes Lernen wird eingesetzt, wenn ein Modell auf vordefinierten Kategorien trainiert wird, um neue, unbekannte Daten zu klassifizieren. Es ist besonders nützlich, wenn die Ziele oder Kategorien der Klassifikation bereits im Vorfeld bekannt sind.";
+                    explanationCorrect = "Richtig!";
                     explanationIncorrect = "Leider falsch. Supervised Learning wird verwendet, wenn die Kategorien im Voraus bekannt sind und das Modell mit diesen Kategorien trainiert wird.";
                     break;
                 case 'q2':
-                    explanationCorrect = "Richtig! Unsupervised Learning benötigt keine vordefinierten Kategorien, um Muster in den Daten zu entdecken.";
+                    explanationCorrect = "Richtig!";
                     explanationIncorrect = "Leider falsch. Unsupervised Learning oder unüberwachtes Lernen verwendet Daten ohne vordefinierte Kategorien, um Muster oder verborgene Strukturen in den Daten zu finden.";
                     break;
                 case 'q3':
-                    explanationCorrect = "Richtig! Supervised Learning ist der Ansatz, bei dem das Modell sowohl mit Eingabe- als auch Ausgabeparametern trainiert wird.";
+                    explanationCorrect = "Richtig!";
                     explanationIncorrect = "Leider falsch. Schau dir noch einmal ganz in Ruhe den Code an. Übergeben wir an das Modell X_train und y_train? Das ist ein guter Hinweis, dass es mit Eingabe- und Ausgabeparametern trainiert wird.";
                     break;
                 default:
@@ -292,35 +295,36 @@
                     explanationIncorrect = "";
             }
 
-            // Nachricht je nach Richtigkeit der Antwort anzeigen
+            // Zeige die passende Nachricht an
             if (userAnswer === correctAnswer) {
-                result.textContent = explanationCorrect;
-                // Konfetti bei richtiger Antwort anzeigen
+                result.textContent = explanationCorrect; // Korrigierter Variablenname
                 confetti({
-                        particleCount: 100,
-                        spread: 70,
-                        origin: { y: 0.6 },
-                        colors: ['#387689', '#B0DFF5', '#B0D39A', '#219653'] // Anpassbare Farben für Konfetti
-                    });
-
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#387689', '#B0DFF5', '#B0D39A', '#219653'] // Anpassbare Farben für Konfetti
+                });
             } else {
-                result.textContent = explanationIncorrect;
+                result.textContent = explanationIncorrect; // Korrigierter Variablenname
             }
 
-            // Nach 3 Sekunden zur nächsten Frage wechseln
-            setTimeout(() => {
-                document.getElementById(currentQuestionId).style.display = 'none';
-                
-                if (nextQuestionId) {
-                    document.getElementById(nextQuestionId).style.display = 'block';
-                } else {
-                    showSummary(); // Zeige die Zusammenfassung
-                }
-            }, 3500); // 3 Sekunden Verzögerung vor der Anzeige der nächsten Frage
+            // Zeige den "Weiter"-Button an, nachdem die Antwort überprüft wurde
+            document.getElementById(`next${currentQuestionId.slice(-1)}`).style.display = 'block';
+
         } else {
             alert("Wähle eine Antwort aus.");
         }
     }
+
+    function showNextQuestion(currentQuestionId, nextQuestionId) {
+        document.getElementById(currentQuestionId).style.display = 'none';
+        if (nextQuestionId) {
+            document.getElementById(nextQuestionId).style.display = 'block';
+        } else {
+            showSummary(); // Zeige die Zusammenfassung
+        }
+    }
+
 
     function showSummary() {
         const summary = document.getElementById('summary');
