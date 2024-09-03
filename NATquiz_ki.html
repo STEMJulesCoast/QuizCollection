@@ -40,7 +40,7 @@
             max-width: 150px; /* Maximale Breite für das Logo */
         }
 
-        #quiz-container {
+        #quiz-container, #start-container {
             position: absolute;
             top: 50%; /* Positioniert die Quizbox in der Mitte der Seite */
             left: 50%;
@@ -52,6 +52,20 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             text-align: left; /* Text linksbündig im Container */
+        }
+
+        .question-container {
+            display: none; /* initially hidden */
+            text-align: left; /* Text linksbündig */
+            margin-bottom: 20px; /* Abstand zwischen den Fragen */
+        }
+
+        #start-container {
+            display: block; /* Startcontainer wird zuerst angezeigt */
+        }
+
+        #quiz-container {
+            display: none; /* Quizcontainer wird zuerst verborgen */
         }
 
 
@@ -173,7 +187,12 @@
 
 <!-- Logo-Einfügung -->
 <img id="logo" src="NAT_Logo.png" alt="Logo"> <!--Logo-Pfad -->
-
+<!-- Startseite -->
+<div id="start-container">
+    <h1>Willkommen zum KI-Quiz!</h1>
+    <p>Teste dein Wissen zu den Grundlagen des maschinellen Lernens und mehr.</p>
+    <button onclick="startQuiz()">Quiz starten</button>
+</div>
 <div id="quiz-container">
     <div class="question-container" id="question1">
         <div class="question">
@@ -260,7 +279,12 @@
         }
     }
 
-    document.getElementById('question1').style.display = 'block'; // Zeigt die erste Frage initial an
+    function startQuiz() {
+        // Verstecke die Startseite und zeige den Quiz-Container
+        document.getElementById('start-container').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        document.getElementById('question1').style.display = 'block'; // Zeige die erste Frage an
+    }
 
     // Speichert die Antworten
     const userAnswers = {};

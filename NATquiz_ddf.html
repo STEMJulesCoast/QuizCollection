@@ -185,6 +185,7 @@
 
     <!-- Logo-Einfügung -->
     <img id="logo" src="NAT_Logo.png" alt="Logo"> <!--Logo-Pfad -->
+    
 
     <div id="quiz-container">
         <div class="question-container" id="question1">
@@ -309,6 +310,13 @@
         // Speichert die Antworten 
         const userAnswers = {};
 
+        function startQuiz() {
+            // Verstecke die Startseite und zeige den Quiz-Container
+            document.getElementById('start-container').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('question1').style.display = 'block'; // Zeige die erste Frage an
+        }
+
         function checkAnswer(questionName, correctAnswer, currentQuestionId, nextQuestionId) {
             const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
             const result = document.getElementById(`result${currentQuestionId.slice(-1)}`);
@@ -348,7 +356,7 @@
                         break;
                 }
 
-                        // Zeige die passende Nachricht an und setze die Verzögerung
+                    
              // Zeige die passende Nachricht an
                 if (userAnswer === correctAnswer) {
                     result.textContent = correctMessage;

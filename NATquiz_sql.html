@@ -40,7 +40,7 @@
                 max-width: 150px; /* Maximale Breite für das Logo */
             }
 
-            #quiz-container {
+            #quiz-container, #start-container {
                 position: absolute;
                 top: 50%; /* Positioniert die Quizbox in der Mitte der Seite */
                 left: 50%;
@@ -54,6 +54,19 @@
                 text-align: left; /* Text linksbündig im Container */
             }
 
+            .question-container {
+                display: none; /* initially hidden */
+                text-align: left; /* Text linksbündig */
+                margin-bottom: 20px; /* Abstand zwischen den Fragen */
+            }
+
+            #start-container {
+                display: block; /* Startcontainer wird zuerst angezeigt */
+            }
+
+            #quiz-container {
+                display: none; /* Quizcontainer wird zuerst verborgen */
+            }
 
             .question-container {
                 display: none; /* initially hidden */
@@ -161,7 +174,12 @@
 
     <!-- Logo-Einfügung -->
     <img id="logo" src="NAT_Logo.png" alt="Logo"> <!--Logo-Pfad -->
-
+    <!-- Startseite -->
+    <div id="start-container">
+        <h1>Willkommen zum Quiz!</h1>
+        <p>Teste dein Wissen zu SQL.</p>
+        <button onclick="startQuiz()">Quiz starten</button>
+    </div>
     <div id="quiz-container">
         <div class="question-container" id="question1">
             <div class="question">
@@ -247,7 +265,12 @@
             }
         }
 
-        document.getElementById('question1').style.display = 'block'; // Zeigt die erste Frage initial an
+        function startQuiz() {
+            // Verstecke die Startseite und zeige den Quiz-Container
+            document.getElementById('start-container').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('question1').style.display = 'block'; // Zeige die erste Frage an
+        }
 
         // Speichert die Antworten des Benutzers
         const userAnswers = {};
