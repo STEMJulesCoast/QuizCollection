@@ -262,7 +262,7 @@
         <div class="question">
             <h2>Frage 4: Was bedeutet Polymorphismus in der objektorientierten Programmierung?</h2>
             <ul class="options">
-                <li><input type="radio" name="q4" value="A"> <span>A) Eine Methode kann in verschiedenen Klassen unterschiedlich implementiert werden, obwohl sie denselben Namen hat.</span></li>
+                <li><input type="radio" name="q4" value="A"> <span>A) Polymorphismus bedeutet, dass eine Klasse nur eine einzige Methode haben kann.</span></li>
                 <li><input type="radio" name="q4" value="B"> <span>B) Eine Methode ist in jeder Klasse identisch.</span></li>
                 <li><input type="radio" name="q4" value="C"> <span>C) Eine Methode kann in verschiedenen Klassen unterschiedlich implementiert werden, obwohl sie denselben Namen hat.</span></li>
                 <li><input type="radio" name="q4" value="D"> <span>D) Polymorphismus bedeutet, dass alle Objekte gleich sind.</span></li>
@@ -370,7 +370,7 @@
                     break;
                 case 'q4':
                     correctMessage = 'Richtig!';
-                    incorrectMessage = 'Leider falsch. Die richtige Antwort ist C: Polymorphismus ermöglicht, dass die gleiche Methode in unterschiedlichen Klassen unterschiedlich funktioniert, abhängig vom Typ des Objekts.';
+                    incorrectMessage = 'Leider falsch. Die richtige Antwort ist C: Polymorphismus bedeutet, dass eine Methode in verschiedenen Klassen unterschiedlich implementiert werden kann, obwohl sie denselben Namen hat.';
                     break;
                 case 'q5':
                     correctMessage = 'Glückwunsch, das ist richtig!';
@@ -423,7 +423,7 @@
             <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: OOM hilft, komplexe Systeme zu strukturieren und zu verwalten.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist B: OOM hilft, komplexe Systeme zu strukturieren und zu verwalten.'}</p>
             <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'A' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Eine Klasse dient als Bauplan.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist A: Eine Klasse dient als Bauplan.'}</p>
             <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Abstraktion, Kapselung, Vererbung und Polymorphismus sind Kernprinzipien.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist B: Abstraktion, Kapselung, Vererbung, Polymorphismus.'}</p>
-            <p>Frage 4: Deine Antwort: ${userAnswers['q4']} - ${userAnswers['q4'] === 'C' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Polymorphismus rmöglicht gleiche Methode, unterschiedliche Funktionen je nach Objekttyp.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist C: Polymorphismus ermöglicht gleiche Methode, unterschiedliche Funktionen je nach Objekttyp'}</p>
+            <p>Frage 4: Deine Antwort: ${userAnswers['q4']} - ${userAnswers['q4'] === 'C' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Polymorphismus bedeutet, dass eine Methode in verschiedenen Klassen unterschiedlich implementiert werden kann, obwohl sie denselben Namen hat.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist C: Polymorphismus bedeutet, dass eine Methode in verschiedenen Klassen unterschiedlich implementiert werden kann, obwohl sie denselben Namen hat.'}</p>
             <p>Frage 5: Deine Antwort: ${userAnswers['q5']} - ${userAnswers['q5'] === 'D' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: OOM erleichtert Wartung durch klare Strukturierung.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Richtig ist D: Erleichtert Wartung durch Strukturierung.'}</p>
         `;
 
