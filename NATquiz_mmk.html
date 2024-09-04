@@ -225,12 +225,12 @@
 
     <div class="question-container" id="question3">
         <div class="question">
-            <h2>Frage 3: Warum sind klassische Automaten nicht ideal für die Analyse komplexer Strukturen natürlicher Sprache?</h2>
+            <h2>Frage 3: Warum sind endliche Automaten nicht ideal für die Analyse komplexer Strukturen natürlicher Sprache?</h2>
             <ul class="options">
-                <li><input type="radio" name="q3" value="A"> <span>A) Weil sie nur die Farben auf einem Bildschirm steuern können.</span></li>
-                <li><input type="radio" name="q3" value="B"> <span>B) Weil sie hauptsächlich zur Verwaltung von Netzwerksicherheitsprotokollen dienen.</span></li>
-                <li><input type="radio" name="q3" value="C"> <span>C) Weil sie hauptsächlich für die Durchführung von grafischen Berechnungen entwickelt wurden.</span></li>
-                <li><input type="radio" name="q3" value="D"> <span>D) Weil sie nicht in der Lage sind, kontextsensitive Grammatiken zu verarbeiten.</span></li>
+                <li><input type="radio" name="q3" value="A"> <span>A) Weil sie nicht mit Buchstaben arbeiten können.</span></li>
+                <li><input type="radio" name="q3" value="B"> <span>B) Weil sie nur für die Steuerung von Lichtschaltern verwendet werden.</span></li>
+                <li><input type="radio" name="q3" value="C"> <span>C) Weil sie keinen Zugang zum Internet haben.</span></li>
+                <li><input type="radio" name="q3" value="D"> <span>D) Weil sie nur einfache Muster erkennen können.</span></li>
             </ul>
         </div>
         <button onclick="checkAnswer('q3', 'D', 'question3', '')">Submit</button>
@@ -314,7 +314,7 @@
                     break;
                 case 'q3':
                     explanationCorrect = "Richtig!";
-                    explanationIncorrect = "Leider falsch. Klassische Automaten können keine kontextsensitive Grammatiken verarbeiten, die für die Analyse komplexer Strukturen natürlicher Sprache erforderlich sind.";
+                    explanationIncorrect = "Leider falsch. Endliche Automaten Endliche Automaten können keine kontextfreien oder kontextsensitiven Grammatiken verarbeiten, die oft für die Analyse der komplexen Strukturen natürlicher Sprache erforderlich sind.";
                     break;
                 default:
                     explanationCorrect = "";
@@ -361,7 +361,7 @@
         summary.innerHTML += `
             <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die Mensch-Maschine-Kommunikation zielt auf Technologien ab, die auf menschliche Eingaben reagieren und vielseitig einsetzbar sind.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die Mensch-Maschine-Kommunikation zielt auf Technologien ab, die auf menschliche Eingaben reagieren und vielseitig einsetzbar sind.'}</p>
             <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'C' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Automaten werden verwendet, um Zustandsübergänge zu definieren, wie zum Beispiel in einem Paketsortiersystem, das Pakete nach bestimmten Kriterien kategorisiert.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Automaten werden verwendet, um Zustandsübergänge zu definieren, wie zum Beispiel in einem Paketsortiersystem, das Pakete nach bestimmten Kriterien kategorisiert.'}</p>
-            <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'D' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Klassische Automaten können keine kontextsensitive Grammatiken verarbeiten, die für die Analyse komplexer Strukturen natürlicher Sprache erforderlich sind.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Klassische Automaten können keine kontextsensitive Grammatiken verarbeiten, die für die Analyse komplexer Strukturen natürlicher Sprache erforderlich sind.'}</p>
+            <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'D' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Endliche Automaten können keine kontextfreien oder kontextsensitiven Grammatiken verarbeiten, die oft für die Analyse der komplexen Strukturen natürlicher Sprache erforderlich sind.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Endliche Automaten können keine kontextfreien oder kontextsensitiven Grammatiken verarbeiten, die oft für die Analyse der komplexen Strukturen natürlicher Sprache erforderlich sind.'}</p>
         `;
 
         document.getElementById('finalMessage').style.display = 'block'; // Zeige die Zusammenfassung
