@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iNAT KI - Teste dein Wissen</title>
+    <title>iNAT MMK - Teste dein Wissen</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -189,50 +189,51 @@
 <img id="logo" src="NAT_Logo.png" alt="Logo"> <!--Logo-Pfad -->
 <!-- Startseite -->
 <div id="start-container">
-    <h1>Willkommen zum KI-Quiz!</h1>
-    <p>Teste dein Wissen zu den Grundlagen des maschinellen Lernens und mehr.</p>
+    <h1>Willkommen zum Quiz!</h1>
+    <p>Teste dein Wissen zu den Grundlagen der Mensch-Maschine-Kommunikation.</p>
     <button onclick="startQuiz()">Quiz starten</button>
 </div>
 <div id="quiz-container">
     <div class="question-container" id="question1">
         <div class="question">
-            <h2>Frage 1: Welche Art maschinellen Lernens wird eingesetzt, wenn die Kategorien, in die Daten klassifiziert werden sollen, im Vorhinein bekannt sind?</h2>
+            <h2>Frage 1: Welche Ziele verfolgt die Mensch-Maschine-Kommunikation?</h2>
             <ul class="options">
-                <li><input type="radio" name="q1" value="A"> A) Supervised Learning</li>
-                <li><input type="radio" name="q1" value="B"> B) Unsupervised Learning</li>
-                <li><input type="radio" name="q1" value="C"> C) Deep Learning</li>
-                <li><input type="radio" name="q1" value="D"> D) Reinforcement Learning</li>
+                <li><input type="radio" name="q1" value="A"> <span>A) Entwicklung von Systemen, die ausschließlich mathematische Probleme lösen.</span></li>
+                <li><input type="radio" name="q1" value="B"> <span>B) Gestaltung von Technologien, die auf menschliche Eingaben wie Sprache, Gesten und Texte reagieren und in verschiedenen Bereichen eingesetzt werden können</span></li>
+                <li><input type="radio" name="q1" value="C"> <span>C) Schaffung von Maschinen, die ausschließlich in industriellen Umgebungen arbeiten.</span></li>
+                <li><input type="radio" name="q1" value="D"> <span>D) Herstellung von Geräten, die nur für die Dekoration verwendet werden.</span>></li>
             </ul>
         </div>
-        <button onclick="checkAnswer('q1', 'A', 'question1', 'question2')">Submit</button>
+        <button onclick="checkAnswer('q1', 'B', 'question1', 'question2')">Submit</button>
         <p id="result1"></p>
         <button onclick="showNextQuestion('question1', 'question2')" id="next1" style="display:none;">Weiter</button>
     </div>
 
     <div class="question-container" id="question2">
         <div class="question">
-            <h2>Frage 2: Unsupervised Learning benötigt vordefinierte Kategorien, um Muster in den Daten zu entdecken.</h2>
+            <h2>Frage 2: Was ist ein Beispiel für die Anwendung von Automaten in der Mensch-Maschine-Kommunikation?</h2>
             <ul class="options">
-                <li><input type="radio" name="q2" value="A"> A) Wahr</li>
-                <li><input type="radio" name="q2" value="B"> B) Falsch</li>
+                <li><input type="radio" name="q2" value="A"> <span>A) Ein Roboter, der Emotionen erkennt.</span></li>
+                <li><input type="radio" name="q2" value="B"> <span>B) Ein Paketsortiersystem, das Pakete automatisch nach Größe und Zielort kategorisiert</span></li>
+                <li><input type="radio" name="q2" value="D"> <span>D) Ein digitaler Assistent, der auf natürliche Sprache reagiert.</span></li>
             </ul>
         </div>
-        <button onclick="checkAnswer('q2', 'B', 'question2', 'question3')">Submit</button>
+        <button onclick="checkAnswer('q2', 'C', 'question2', 'question3')">Submit</button>
         <p id="result2"></p>
         <button onclick="showNextQuestion('question2', 'question3')" id="next2" style="display:none;">Weiter</button>
     </div>
 
     <div class="question-container" id="question3">
         <div class="question">
-            <h2>Frage 3: Handelt es sich bei dem hier vorgestellten Deep Learning Modell um einen Supervised oder Unsupervised Ansatz?</h2>
+            <h2>Frage 3: Warum sind klassische Automaten nicht ideal für die Analyse komplexer Strukturen natürlicher Sprache?</h2>
             <ul class="options">
-                <li><input type="radio" name="q3" value="A"> <span>A) Supervised, weil das Modell sowohl mit Eingabe - als auch Ausgabeparamtern trainiert wird.</span></li>
-                <li><input type="radio" name="q3" value="B"> <span>B) Unsupervised, weil das Modell keine Ausgabedaten benötigt, um Vorhersagen zu treffen.</span></li>
-                <li><input type="radio" name="q3" value="C"> <span>C) Unsupervised, weil das Modell zufällige Muster in den Daten erzeugt, ohne auf Labels angewiesen zu sein.</span></li>
-
+                <li><input type="radio" name="q3" value="A"> <span>A) Weil sie nur die Farben auf einem Bildschirm steuern können.</span></li>
+                <li><input type="radio" name="q3" value="B"> <span>B) Weil sie hauptsächlich zur Verwaltung von Netzwerksicherheitsprotokollen dienen.</span></li>
+                <li><input type="radio" name="q3" value="C"> <span>C) Weil sie hauptsächlich für die Durchführung von grafischen Berechnungen entwickelt wurden.</span></li>
+                <li><input type="radio" name="q3" value="D"> <span>D) Weil sie nicht in der Lage sind, kontextsensitive Grammatiken zu verarbeiten.</span></li>
             </ul>
         </div>
-        <button onclick="checkAnswer('q3', 'A', 'question3', '')">Submit</button>
+        <button onclick="checkAnswer('q3', 'D', 'question3', '')">Submit</button>
         <p id="result3"></p>
         <button onclick="showNextQuestion('question3', '')" id="next3" style="display:none;">Zusammenfassung</button>
     </div>
@@ -305,15 +306,15 @@
             switch (questionName) {
                 case 'q1':
                     explanationCorrect = "Richtig!";
-                    explanationIncorrect = "Leider falsch. Supervised Learning wird verwendet, wenn die Kategorien im Voraus bekannt sind und das Modell mit diesen Kategorien trainiert wird.";
+                    explanationIncorrect = "Leider falsch. Die Mensch-Maschine-Kommunikation zielt auf Technologien ab, die auf menschliche Eingaben reagieren und vielseitig einsetzbar sind.";
                     break;
                 case 'q2':
                     explanationCorrect = "Richtig!";
-                    explanationIncorrect = "Leider falsch. Unsupervised Learning oder unüberwachtes Lernen verwendet Daten ohne vordefinierte Kategorien, um Muster oder verborgene Strukturen in den Daten zu finden.";
+                    explanationIncorrect = "Leider falsch. Automaten werden verwendet, um Zustandsübergänge zu definieren, wie zum Beispiel in einem Paketsortiersystem, das Pakete nach bestimmten Kriterien kategorisiert.";
                     break;
                 case 'q3':
                     explanationCorrect = "Richtig!";
-                    explanationIncorrect = "Leider falsch. Schau dir noch einmal ganz in Ruhe den Code an. Übergeben wir an das Modell X_train und y_train? Das ist ein guter Hinweis, dass es mit Eingabe- und Ausgabeparametern trainiert wird.";
+                    explanationIncorrect = "Leider falsch. Klassische Automaten können keine kontextsensitive Grammatiken verarbeiten, die für die Analyse komplexer Strukturen natürlicher Sprache erforderlich sind.";
                     break;
                 default:
                     explanationCorrect = "";
@@ -358,9 +359,9 @@
         
         // Übersicht der Antworten mit dynamischen Texten
         summary.innerHTML += `
-            <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'A' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Supervised Learning oder überwachtes Lernen wird eingesetzt, wenn ein Modell auf vordefinierten Kategorien trainiert wird.' : '<span style="color: red;"><strong>Leider falsch</strong></span>, denn Supervised Learning wird verwendet, wenn die Kategorien im Voraus bekannt sind und das Modell mit diesen Kategorien trainiert wird.'}</p>
-            <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Unsupervised Learning benötigt keine vordefinierten Kategorien, um Muster in den Daten zu entdecken.' : '<span style="color: red;"><strong>Leider falsch</strong></span>, denn Unsupervised Learning verwendet Daten ohne vordefinierte Kategorien, um Muster oder verborgene Strukturen in den Daten zu finden.'}</p>
-            <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'A' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Supervised Learning ist der Ansatz, bei dem das Modell sowohl mit Eingabe- als auch Ausgabeparametern trainiert wird.' : '<span style="color: red;"><strong>Leider falsch</strong></span>, schau dir hier noch einmal ganz in Ruhe den Code an.'}</p>
+            <p>Frage 1: Deine Antwort: ${userAnswers['q1']} - ${userAnswers['q1'] === 'B' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Die Mensch-Maschine-Kommunikation zielt auf Technologien ab, die auf menschliche Eingaben reagieren und vielseitig einsetzbar sind.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Die Mensch-Maschine-Kommunikation zielt auf Technologien ab, die auf menschliche Eingaben reagieren und vielseitig einsetzbar sind.'}</p>
+            <p>Frage 2: Deine Antwort: ${userAnswers['q2']} - ${userAnswers['q2'] === 'C' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Automaten werden verwendet, um Zustandsübergänge zu definieren, wie zum Beispiel in einem Paketsortiersystem, das Pakete nach bestimmten Kriterien kategorisiert.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Automaten werden verwendet, um Zustandsübergänge zu definieren, wie zum Beispiel in einem Paketsortiersystem, das Pakete nach bestimmten Kriterien kategorisiert.'}</p>
+            <p>Frage 3: Deine Antwort: ${userAnswers['q3']} - ${userAnswers['q3'] === 'D' ? '<span style="color: #387689;"><strong>Richtig!</strong></span>: Klassische Automaten können keine kontextsensitive Grammatiken verarbeiten, die für die Analyse komplexer Strukturen natürlicher Sprache erforderlich sind.' : '<span style="color: red;"><strong>Leider falsch.</strong></span> Klassische Automaten können keine kontextsensitive Grammatiken verarbeiten, die für die Analyse komplexer Strukturen natürlicher Sprache erforderlich sind.'}</p>
         `;
 
         document.getElementById('finalMessage').style.display = 'block'; // Zeige die Zusammenfassung

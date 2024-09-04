@@ -346,7 +346,8 @@
     function checkAnswer(questionName, correctAnswer, currentQuestionId, nextQuestionId) {
         const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
         const result = document.getElementById(`result${currentQuestionId.slice(-1)}`);
-        
+        const submitButton = document.querySelector(`#${currentQuestionId} button`);
+
         if (selectedOption) {
             const userAnswer = selectedOption.value;
             userAnswers[questionName] = userAnswer; // Speichere die Antwort
@@ -395,8 +396,9 @@
             } else {
                  result.textContent = incorrectMessage;
             }
-                
-                // Zeige den "Weiter"-Button an, nachdem die Antwort überprüft wurde
+             
+            submitButton.style.display = 'none'; // Hide Submit button
+            // Zeige den "Weiter"-Button an, nachdem die Antwort überprüft wurde
             document.getElementById(`next${currentQuestionId.slice(-1)}`).style.display = 'block';
 
         } else {
