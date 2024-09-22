@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oceanographic Data Processing - Test your Knowledge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333; /* Dunkles Grau für den Hintergrund */
+            color: white; /* Weiße Schriftfarbe */
+            display: flex;
+            flex-direction: column; /* Stellt sicher, dass alles vertikal gestapelt ist */
+            align-items: center; /* Zentriert den Inhalt horizontal */
+            min-height: 100vh; /* Gesamte Höhe des Viewports */
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        #svg-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Hintergrundebene unter dem restlichen Inhalt */
+        }
+
+        #header {
+            position: absolute;
+            top: 10%; /* Positioniert das Logo im oberen Drittel der Seite */
+            left: 50%;
+            transform: translateX(-50%); /* Zentriert das Logo horizontal */
+        }
+
+        #logo {
+            max-width: 150px; /* Maximale Breite für das Logo */
+        }
+
+        #quiz-container, #start-container {
+            position: absolute;
+            top: 50%; /* Positioniert die Quizbox in der Mitte der Seite */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Zentriert die Quizbox horizontal und vertikal */
+            width: 90%;
+            max-width: 600px;
+            background-color: #444; /* Etwas helleres Grau für den Quiz-Hintergrund */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: left; /* Text linksbündig im Container */
+        }
+
+        .question-container {
+            display: none; /* initially hidden */
+            text-align: left; /* Text linksbündig */
+            margin-bottom: 20px; /* Abstand zwischen den Fragen */
+        }
+
+        #start-container {
+            display: block; /* Startcontainer wird zuerst angezeigt */
+        }
+
+        #quiz-container {
+            display: none; /* Quizcontainer wird zuerst verborgen */
+        }
+
+
+        .question-container {
+            display: none; /* initially hidden */
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+        .options li {
+                margin-bottom: 10px;
+                line-height: 1.5; /* Erhöht die Zeilenhöhe für mehr Abstand zwischen den Zeilen */
+                display: flex; /*  Flexbox für eine saubere Ausrichtung */
+                align-items: flex-start; /* Stellt sicher, dass der Inhalt oben beginnt */
+            }
+
+        .options li input {
+                margin-right: 10px; /* Fügt Abstand zwischen Radio-Button und Text ein */
+            }
+
+        .options li span {
+                display: block; /* Behandelt den Text als Block, um die Einrückung zu unterstützen */
+            }
+        
+
+        button {
+            background-color: #7f3a20;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #7f3a20;
+        }
+    
+        footer {
+            font-size: 12px;
+            color: #aaa;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            background-color: #222; /* Dunklerer Hintergrund für den Footer */
+            margin-top: auto; /* Stößt den Footer an das untere Ende */
+            position: fixed; /* Fixiert den Footer am unteren Rand */
+            bottom: 0;
+            left: 0;
+        }
+        footer a {
+            color: #7f3a20; /* Neue Farbe für die Links im Footer */
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        
+        .modal {
+            display: none; /* Standardmäßig verborgen */
+            position: fixed; /* Über die gesamte Seite legen */
+            z-index: 1000; /* Höherer Wert, damit es über allen anderen Inhalten liegt */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund für Abdunkelung */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* Zentriert das Modal auf der Seite */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px; /* Maximale Breite für das Modal */
+            position: relative; /* Relativ zum Container */
+            color: black; /* Stellt sicher, dass der Text im Modal sichtbar ist */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Schatten für Tiefenwirkung */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  
+<!-- Squares background -->
+<!--<svg id="svg-background">-->
+    <!-- Squares in "Bauhaus" style colors -->
+  <!--  <rect x="400" y="100" width="400" height="500" fill="none" stroke="#906472" stroke-width=".9" />-->
+  <!--  <rect x="600" y="300" width="500" height="200" fill="none" stroke="#7f3a20" stroke-width="1.2" />-->
+   <!-- <rect x="1000" y="200" width="600" height="600" fill="none" stroke="#468499" stroke-width=".7" />-->
+  <!--  <rect x="100" y="400" width="400" height="400" fill="none" stroke="#ff6666" stroke-width=".7" />-->
+<!--</svg>-->
+
+<body style="background-image: url('Emissions.png'); background-size: cover; background-position: center;"></body>
+<!-- Logo-Einfügung -->
+<!--<img id="logo" src="Logo_2024_©_InitiativeNAT.png" alt="Logo"> <!--Logo-Pfad -->
+<!-- Startseite -->
+<div id="start-container">
+    <h1>Welcome to the Oceanographic Data Processing Quiz No.1</h1>
+    <p>Test your Knowledge</p>
+    <button onclick="startQuiz()">Start the Quiz</button>
+</div>
+<div id="quiz-container">
+    <div class="question-container" id="question1">
+        <div class="question">
+            <h2>Question 1: Which of these Python modules is primarily used to read netCDF data files?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q1" value="A"> A) NumPy</li>
+                <li><input type="radio" name="q1" value="B"> B) Matplotlib</li>
+                <li><input type="radio" name="q1" value="C"> C) xarray</li>
+                <li><input type="radio" name="q1" value="D"> D) Pandas</li>
+            </ul>
+        </div>
+        <button onclick="checkAnswer('q1', 'C', 'question1', 'question2')">Submit</button>
+        <p id="result1"></p>
+        <button onclick="showNextQuestion('question1', 'question2')" id="next1" style="display:none;">Next</button>
+    </div>
+    
+    <div class="question-container" id="question2">
+        <div class="question">
+            <h2>Question 2: What is the purpose of the <code>coarsen()</code> method in xarray?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q2" value="A"> A) To sort the data</li>
+                <li><input type="radio" name="q2" value="B"> B) To interpolate data to a finer grid</li>
+                <li><input type="radio" name="q2" value="C"> C) To reduce the resolution of the data to a coarser grid</li>
+                <li><input type="radio" name="q2" value="D"> D) To save the data</li>
+            </ul>
+        </div>
+        <button onclick="checkAnswer('q2', 'C', 'question2', 'question3')">Submit</button>
+        <p id="result2"></p>
+        <button onclick="showNextQuestion('question2', 'question3')" id="next2" style="display:none;">Next</button>
+    </div>
+    
+    <div class="question-container" id="question3">
+        <div class="question">
+            <h2>Question 3: In a quiver plot, which of the following represents the wind vector's speed?</h2>
+            <ul class="options">
+                <li><input type="radio" name="q3" value="A"> A) The length of the arrow</li>
+                <li><input type="radio" name="q3" value="B"> B) The color of the arrow</li>
+                <li><input type="radio" name="q3" value="C"> C) The spacing of the arrows</li>
+                <li><input type="radio" name="q3" value="D"> D) The width of the arrow</li>
+            </ul>
+        </div>
+        <button onclick="checkAnswer('q3', 'A', 'question3', '')">Submit</button>
+        <p id="result3"></p>
+        <button onclick="showNextQuestion('question3', '')" id="next3" style="display:none;">Summary</button>
+    </div>
+
+    <!-- Bereich für die Zusammenfassung -->
+    <div id="finalMessage" style="display:none;">
+        <h2>Done!</h2>
+        <p id="summary"></p> <!-- Hier wird die Zusammenfassung angezeigt -->
+    </div>
+</div>
+   <!-- Impressum am Ende der Seite -->
+   <footer>
+    <!-- Impressum und Datenschutz Links -->
+    <p>
+        <a href="#" onclick="openModal(); return false;">GitHub Pages</a> | 
+        <a href="#" onclick="openCO2Modal(); return false;">CO₂ Emissions Data Info</a>
+    </p>
+</footer>
+
+<!-- Modal für GitHub Pages Datenschutzhinweise -->
+<div id="privacy-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>This website is hosted on GitHub Pages. GitHub may collect basic usage data, such as IP addresses and referrer information, for operational and maintenance purposes. For more information, please refer to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">GitHub Privacy Statement</a>.</p>
+    </div>
+</div>
+
+<!-- Modal für CO2 Emissionsdaten -->
+<div id="co2-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeCO2Modal()">&times;</span>
+        <p>The background image shows CO₂ emissions data for the year 2022, based on the Emissions Database for Global Atmospheric Research (EDGAR), version v8.0. The estimates are derived from a variety of publicly available statistics, broken down by sectors and countries. The data is represented per grid cell (0.1°x0.1°) worldwide. <br>
+        <a href="https://edgar.jrc.ec.europa.eu/dataset_ghg80" target="_blank">Click here for more details</a>.</p>
+    </div>
+</div>
+
+
+<script>
+    function openModal() {
+        document.getElementById('privacy-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('privacy-modal').style.display = 'none';
+    }
+
+    function openCO2Modal() {
+        document.getElementById('co2-modal').style.display = 'block';
+    }
+
+    function closeCO2Modal() {
+        document.getElementById('co2-modal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        var privacyModal = document.getElementById('privacy-modal');
+        var co2Modal = document.getElementById('co2-modal');
+        if (event.target == privacyModal) {
+            closeModal();
+        } else if (event.target == co2Modal) {
+            closeCO2Modal();
+        }
+    }
+
+    function startQuiz() {
+        // Verstecke die Startseite und zeige den Quiz-Container
+        document.getElementById('start-container').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        document.getElementById('question1').style.display = 'block'; // Zeige die erste Frage an
+    }
+
+    // Speichert die Antworten
+    const userAnswers = {};
+
+    function checkAnswer(questionName, correctAnswer, currentQuestionId, nextQuestionId) {
+        const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+        const result = document.getElementById(`result${currentQuestionId.slice(-1)}`);
+        const submitButton = document.querySelector(`#${currentQuestionId} button`);
+
+        if (selectedOption) {
+            const userAnswer = selectedOption.value;
+            userAnswers[questionName] = userAnswer; // Speichere die Antwort des Benutzers
+
+            // Erklärungstexte für jede Frage definieren
+            let explanationCorrect;
+            let explanationIncorrect;
+
+            switch (questionName) {
+                case 'q1':
+                    explanationCorrect = "Correct! xarray is used to read netCDF files, which is the main format for working with large scientific datasets.";
+                    explanationIncorrect = "Wrong. xarray is the Python module used to handle netCDF data files, which is commonly used in scientific data analysis.";
+                    break;
+                case 'q2':
+                    explanationCorrect = "Correct! The `coarsen()` method is used to reduce the resolution of the data to a coarser grid.";
+                    explanationIncorrect = "Wrong. `coarsen()` is used to reduce the resolution of the data to a coarser grid by averaging over a specified window.";
+                    break;
+                case 'q3':
+                    explanationCorrect = "Correct! The length of the arrow in a quiver plot represents the speed, and the direction of the arrow shows the direction of the wind vector.";
+                    explanationIncorrect = "Wrong. The length of the arrow in a quiver plot represents the wind speed, and the direction of the arrow shows the wind direction.";
+                    break;
+                default:
+                    explanationCorrect = "";
+                    explanationIncorrect = "";
+            }
+
+            // Zeige die passende Nachricht an
+            if (userAnswer === correctAnswer) {
+                result.textContent = explanationCorrect; // Korrigierter Variablenname
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#ff6666', '#468499', '#7f3a20', '#906472'] // Anpassbare Farben für Konfetti
+                });
+            } else {
+                result.textContent = explanationIncorrect; // Korrigierter Variablenname
+            }
+
+            submitButton.style.display = 'none'; // Hide Submit button
+            // Zeige den "Weiter"-Button an, nachdem die Antwort überprüft wurde
+            document.getElementById(`next${currentQuestionId.slice(-1)}`).style.display = 'block';
+
+        } else {
+            alert("Choose an answer.");
+        }
+    }
+
+    function showNextQuestion(currentQuestionId, nextQuestionId) {
+        document.getElementById(currentQuestionId).style.display = 'none';
+        if (nextQuestionId) {
+            document.getElementById(nextQuestionId).style.display = 'block';
+        } else {
+            showSummary(); // Zeige die Zusammenfassung
+        }
+    }
+
+
+    function showSummary() {
+        const summary = document.getElementById('summary');
+        summary.innerHTML = '<h3>Your answers:</h3>';
+        
+        // Übersicht der Antworten mit dynamischen Texten
+        summary.innerHTML += `
+            <p>Question 1: Your answer: ${userAnswers['q1']} - ${userAnswers['q1'] === 'C' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: xarray is the correct module to handle netCDF data files.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is C. xarray is often used to read and manipulate netCDF files.'}</p>
+            
+            <p>Question 2: Your answer: ${userAnswers['q2']} - ${userAnswers['q2'] === 'C' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: The <code>coarsen()</code> method is used to reduce the resolution of data to a coarser grid.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is C. The <code>coarsen()</code> method reduces the data resolution.'}</p>
+            
+            <p>Question 3: Your answer: ${userAnswers['q3']} - ${userAnswers['q3'] === 'A' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: The length of the arrow represents the wind speed in a quiver plot.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is A. The length of the arrow represents the wind speed, and its direction shows the wind direction.'}</p>
+        `;
+
+        document.getElementById('finalMessage').style.display = 'block'; // Zeige die Zusammenfassung
+    }
+</script>
+
+</body>
+</html>
