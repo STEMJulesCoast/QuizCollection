@@ -200,98 +200,105 @@
 <body>
   
 <!-- Squares background -->
-<!--<svg id="svg-background">-->
+<svg id="svg-background">
     <!-- Squares in "Bauhaus" style colors -->
-  <!--  <rect x="400" y="100" width="400" height="500" fill="none" stroke="#906472" stroke-width=".9" />-->
-  <!--  <rect x="600" y="300" width="500" height="200" fill="none" stroke="#7f3a20" stroke-width="1.2" />-->
-   <!-- <rect x="1000" y="200" width="600" height="600" fill="none" stroke="#468499" stroke-width=".7" />-->
-  <!--  <rect x="100" y="400" width="400" height="400" fill="none" stroke="#ff6666" stroke-width=".7" />-->
-<!--</svg>-->
+    <rect x="400" y="100" width="400" height="500" fill="none" stroke="#906472" stroke-width=".9" ></rect>
+    <rect x="600" y="300" width="500" height="200" fill="none" stroke="#7f3a20" stroke-width="1.2" ></rect>
+    <rect x="1000" y="200" width="600" height="600" fill="none" stroke="#468499" stroke-width="5" ></rect>
+    <rect x="100" y="400" width="400" height="400" fill="none" stroke="#ff6666" stroke-width=".7" ></rect>
+    <rect x="50" y="10" width="1500" height="450" fill="none" stroke="#468480" stroke-width="4" ></rect>
+</svg>
 
-<body style="background-image: url('Emissions.png'); background-size: cover; background-position: center;"></body>
-<!-- Logo-Einfügung -->
-<!--<img id="logo" src="Logo_2024_©_InitiativeNAT.png" alt="Logo"> <!--Logo-Pfad -->
+
 <!-- Startseite -->
 <div id="start-container">
-    <h1>Welcome to the Oceanographic Data Processing Quiz No.1</h1>
+    <h1>Welcome to the Oceanographic Data Processing Quiz No.2</h1>
     <p>Test your Knowledge</p>
     <button onclick="startQuiz()">Start the Quiz</button>
 </div>
 <div id="quiz-container">
+    <!-- Question 1 -->
     <div class="question-container" id="question1">
-        <div class="question">
-            <h2>Question 1: Which of these Python modules is primarily used to read netCDF data files?</h2>
-            <ul class="options">
-                <li><input type="radio" name="q1" value="A"> A) NumPy</li>
-                <li><input type="radio" name="q1" value="B"> B) Matplotlib</li>
-                <li><input type="radio" name="q1" value="C"> C) xarray</li>
-                <li><input type="radio" name="q1" value="D"> D) Pandas</li>
-            </ul>
-        </div>
-        <button onclick="checkAnswer('q1', 'C', 'question1', 'question2')">Submit</button>
+        <h2>Question 1: What does the function `compute_windstress()` calculate?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q1" value="A"> A) Wind speed from wind components</li>
+            <li><input type="radio" name="q1" value="B"> B) Wind stress components from wind velocity</li>
+            <li><input type="radio" name="q1" value="C"> C) Wind stress curl</li>
+            <li><input type="radio" name="q1" value="D"> D) Ekman transport components</li>
+        </ul>
+        <button onclick="checkAnswer('q1', 'B', 'question1', 'question2')">Submit</button>
         <p id="result1"></p>
-        <button onclick="showNextQuestion('question1', 'question2')" id="next1" style="display:none;">Next</button>
+        <button id="next1" onclick="showNextQuestion('question1', 'question2')" style="display:none;">Next</button>
     </div>
-    
+
+    <!-- Question 2 -->
     <div class="question-container" id="question2">
-        <div class="question">
-            <h2>Question 2: What is the purpose of the <code>coarsen()</code> method in xarray?</h2>
-            <ul class="options">
-                <li><input type="radio" name="q2" value="A"> A) To sort the data</li>
-                <li><input type="radio" name="q2" value="B"> B) To interpolate data to a finer grid</li>
-                <li><input type="radio" name="q2" value="C"> C) To reduce the resolution of the data to a coarser grid</li>
-                <li><input type="radio" name="q2" value="D"> D) To save the data</li>
-            </ul>
-        </div>
+        <h2>Question 2: Which key parameter influences the direction of Ekman transport?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q2" value="A"> A) Wind stress direction.</li>
+            <li><input type="radio" name="q2" value="B"> B) Coriolis force.</li>
+            <li><input type="radio" name="q2" value="C"> C) Both wind stress direction and Coriolis force.</li>
+            <li><input type="radio" name="q2" value="D"> D) Wind stress curl.</li>
+        </ul>
         <button onclick="checkAnswer('q2', 'C', 'question2', 'question3')">Submit</button>
         <p id="result2"></p>
-        <button onclick="showNextQuestion('question2', 'question3')" id="next2" style="display:none;">Next</button>
+        <button id="next2" onclick="showNextQuestion('question2', 'question3')" style="display:none;">Next</button>
     </div>
-    
+
+    <!-- Question 3 -->
     <div class="question-container" id="question3">
-        <div class="question">
-            <h2>Question 3: In a quiver plot, which of the following represents the wind vector's speed?</h2>
-            <ul class="options">
-                <li><input type="radio" name="q3" value="A"> A) The length of the arrow</li>
-                <li><input type="radio" name="q3" value="B"> B) The color of the arrow</li>
-                <li><input type="radio" name="q3" value="C"> C) The spacing of the arrows</li>
-                <li><input type="radio" name="q3" value="D"> D) The width of the arrow</li>
-            </ul>
-        </div>
-        <button onclick="checkAnswer('q3', 'A', 'question3', 'question4')">Submit</button>
+        <h2>Question 3: Why do we primarly create custom Python modules?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q3" value="A"> A) To reduce memory usage in Python scripts</li>
+            <li><input type="radio" name="q3" value="B"> B) To organize and reuse code across multiple projects</li>
+            <li><input type="radio" name="q3" value="C"> C) To make Python faster</li>
+            <li><input type="radio" name="q3" value="D"> D) To debug code more effectively</li>
+        </ul>
+        <button onclick="checkAnswer('q3', 'B', 'question3', 'question4')">Submit</button>
         <p id="result3"></p>
-        <button onclick="showNextQuestion('question3', 'question4')" id="next3" style="display:none;">Next</button>
+        <button id="next3" onclick="showNextQuestion('question3', 'question4')" style="display:none;">Next</button>
     </div>
 
+    <!-- Question 4 -->
     <div class="question-container" id="question4">
-        <div class="question">
-            <h2>Question 4: What is the benefit of using Dask with xarray for large datasets?</h2>
-            <ul class="options">
-                <li><input type="radio" name="q4" value="A"> A) Dask provides faster rendering of plots.</li>
-                <li><input type="radio" name="q4" value="B"> B) Dask allows for parallel computation and handles out-of-core memory management.</li>
-                <li><input type="radio" name="q4" value="C"> C) Dask enables more accurate calculations in scientific data processing.</li>
-                <li><input type="radio" name="q4" value="D"> D) Dask simplifies the syntax of the xarray library.</li>
-            </ul>
-        </div>
-        <button onclick="checkAnswer('q4', 'B', 'question4', 'question5')">Submit</button>
+        <h2>Question 4: What drives Ekman pumping?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q4" value="A"> A) The interaction between wind stress curl and the Coriolis force.</li>
+            <li><input type="radio" name="q4" value="B"> B) Surface temperature</li>
+            <li><input type="radio" name="q4" value="C"> C) Water salinity</li>
+            <li><input type="radio" name="q4" value="D"> D) Sea level gradient</li>
+        </ul>
+        <button onclick="checkAnswer('q4', 'A', 'question4', 'question5')">Submit</button>
         <p id="result4"></p>
-        <button onclick="showNextQuestion('question4', 'question5')" id="next4" style="display:none;">Next</button>
+        <button id="next4" onclick="showNextQuestion('question4', 'question5')" style="display:none;">Next</button>
     </div>
 
-    <!-- New Question 5 -->
+    <!-- Question 5 -->
     <div class="question-container" id="question5">
-        <div class="question">
-            <h2>Question 5: What is an advantage of using loops in data processing?</h2>
-            <ul class="options">
-                <li><input type="radio" name="q5" value="A"> A) They increase the accuracy of calculations.</li>
-                <li><input type="radio" name="q5" value="B"> B) They allow for parallel processing of datasets without loading them into memory.</li>
-                <li><input type="radio" name="q5" value="C"> C) They enable efficient repetitive processing of tasks or large datasets.</li>
-                <li><input type="radio" name="q5" value="D"> D) They reduce the time needed to load data.</li>
-            </ul>
-        </div>
-        <button onclick="checkAnswer('q5', 'C', 'question5', '')">Submit</button>
+        <h2>Question 5: When would you use an if-else statement in Python?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q5" value="A"> A) To repeat a task multiple times</li>
+            <li><input type="radio" name="q5" value="B"> B) To check a condition and execute code accordingly</li>
+            <li><input type="radio" name="q5" value="C"> C) To process data in parallel</li>
+            <li><input type="radio" name="q5" value="D"> D) To visualize data</li>
+        </ul>
+        <button onclick="checkAnswer('q5', 'B', 'question5', 'question6')">Submit</button>
         <p id="result5"></p>
-        <button onclick="showNextQuestion('question5', '')" id="next5" style="display:none;">Summary</button>
+        <button id="next5" onclick="showNextQuestion('question5', 'question6')" style="display:none;">Next</button>
+    </div>
+
+    <!-- Question 6 -->
+    <div class="question-container" id="question6">
+        <h2>Question 6: Why does standard Ekman theory break down at the equator?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q6" value="A"> A) The wind stress becomes too weak at the equator.</li>
+            <li><input type="radio" name="q6" value="B"> B) The Coriolis parameter becomes zero at the equator, invalidating the usual Ekman balance equations.</li>
+            <li><input type="radio" name="q6" value="C"> C) The ocean currents are too fast at the equator for Ekman theory to apply.</li>
+            <li><input type="radio" name="q6" value="D"> D) Ekman theory does not account for the effect of the Earth's tilt, which is significant at the equator.</li>
+        </ul>
+        <button onclick="checkAnswer('q6', 'B', 'question6', '')">Submit</button>
+        <p id="result6"></p>
+        <button id="next6" onclick="showNextQuestion('question6', '')" style="display:none;">Summary</button>
     </div>
 
 
@@ -381,30 +388,33 @@
 
             switch (questionName) {
                 case 'q1':
-                    explanationCorrect = "Correct! xarray is used to read netCDF files, which is the main format for working with large scientific datasets.";
-                    explanationIncorrect = "Wrong. xarray is the Python module used to handle netCDF data files, which is commonly used in scientific data analysis.";
+                    explanationCorrect = "Correct! The function `compute_windstress()` calculates wind stress components from wind velocity.";
+                    explanationIncorrect = "Wrong. The `compute_windstress()` function calculates wind stress components from wind velocity.";
                     break;
                 case 'q2':
-                    explanationCorrect = "Correct! The `coarsen()` method is used to reduce the resolution of the data to a coarser grid.";
-                    explanationIncorrect = "Wrong. `coarsen()` is used to reduce the resolution of the data to a coarser grid by averaging over a specified window.";
+                    explanationCorrect = "Correct! The direction of Ekman transport is determined by both the wind stress direction and the Coriolis force. Wind stress sets the direction the wind pushes surface water, and the Coriolis force causes the deflection of this flow.";
+                    explanationIncorrect = "Wrong. Both wind stress direction and the Coriolis force determine the direction of Ekman transport. Wind stress sets the initial direction of surface movement, while the Coriolis force deflects it, creating the net movement.";
                     break;
                 case 'q3':
-                    explanationCorrect = "Correct! The length of the arrow in a quiver plot represents the speed, and the direction of the arrow shows the direction of the wind vector.";
-                    explanationIncorrect = "Wrong. The length of the arrow in a quiver plot represents the wind speed, and the direction of the arrow shows the wind direction.";
+                    explanationCorrect = "Correct! We create custom Python modules primarily to organize and reuse code across multiple projects. Although it doesn't directly improve Python's speed (C) or make debugging easier (D), it does help with code organization and maintainability.";
+                    explanationIncorrect = "Wrong. The primary reason for creating custom Python modules is to organize and reuse code across multiple projects.";
                     break;
                 case 'q4':
-                    explanationCorrect = "Correct! Dask allows for parallel computation and handles out-of-core memory management.";
-                    explanationIncorrect = "Wrong. The correct answer is B. Dask enables parallel computation and handles large datasets more efficiently.";
+                    explanationCorrect = "Correct! Ekman pumping is driven by the interaction between wind stress curl and the Coriolis force.";
+                    explanationIncorrect = "Wrong. Ekman pumping is driven by the interaction between wind stress curl and the Coriolis force.";
                     break;
                 case 'q5':
-                    explanationCorrect = "Correct! Loops allow efficient repetitive processing of tasks or large datasets.";
-                    explanationIncorrect = "Wrong. The correct answer is C. Loops enable efficient repetitive processing of tasks or large datasets.";
+                    explanationCorrect = "Correct! You use an if-else statement to check a condition and execute code based on that condition.";
+                    explanationIncorrect = "Wrong. The if-else statement is used to check a condition and execute code based on that condition.";
+                    break;
+                case 'q6':
+                    explanationCorrect = "Correct! Standard Ekman theory breaks down at the equator because the Coriolis parameter becomes zero. The Coriolis force is essential for the balance that defines Ekman transport, and without it, the equations are no longer valid.";
+                    explanationIncorrect = "Wrong. Standard Ekman theory breaks down at the equator because the Coriolis parameter becomes zero, making the usual equations invalid.";
                     break;
                 default:
                     explanationCorrect = "";
                     explanationIncorrect = "";
             }
-
             // Zeige die passende Nachricht an
             if (userAnswer === correctAnswer) {
                 result.textContent = explanationCorrect; // Korrigierter Variablenname
@@ -443,15 +453,15 @@
         
         // Übersicht der Antworten mit dynamischen Texten
         summary.innerHTML += `
-            <p>Question 1: Your answer: ${userAnswers['q1']} - ${userAnswers['q1'] === 'C' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: xarray is the correct module to handle netCDF data files.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is C. xarray is often used to read and manipulate netCDF files.'}</p>
+            <p>Question 1: Your answer: ${userAnswers['q1']} - ${userAnswers['q1'] === 'B' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: The function computes wind stress components from wind velocity.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is B. The function computes wind stress components from wind velocity.'}</p>
+    
+            <p>Question 2: Your answer: ${userAnswers['q2']} - ${userAnswers['q2'] === 'C' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: Both wind stress direction and the Coriolis force determine the direction of Ekman transport. Wind stress sets the initial direction of surface movement, while the Coriolis force deflects it, creating the net movement' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is C. Both wind stress direction and the Coriolis force determine the direction of Ekman transport. Wind stress sets the initial direction of surface movement, while the Coriolis force deflects it, creating the net movement.'}</p>
             
-            <p>Question 2: Your answer: ${userAnswers['q2']} - ${userAnswers['q2'] === 'C' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: The <code>coarsen()</code> method is used to reduce the resolution of data to a coarser grid.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is C. The <code>coarsen()</code> method reduces the data resolution.'}</p>
-            
-            <p>Question 3: Your answer: ${userAnswers['q3']} - ${userAnswers['q3'] === 'A' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: The length of the arrow represents the wind speed in a quiver plot.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is A. The length of the arrow represents the wind speed, and its direction shows the wind direction.'}</p>
-            
-            <p>Question 4: Your answer: ${userAnswers['q4']} - ${userAnswers['q4'] === 'B' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: Dask allows for parallel computation and handles out-of-core memory management.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is B. Dask enables efficient handling of large datasets through parallel computation.'}</p>
+            <p>Question 3: Your answer: ${userAnswers['q3']} - ${userAnswers['q3'] === 'B' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: Custom Python modules help organize and reuse code efficiently across projects.' : '<span style="color: red;"><strong>Partially Correct.</strong></span> The primary reason for creating custom Python modules is to organize and reuse code across multiple projects, not to reduce memory usage or improve Pythons speed.'}</p>
+    
+            <p>Question 4: Your answer: ${userAnswers['q4']} - ${userAnswers['q4'] === 'A' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: Ekman pumping is driven by the interaction between wind stress curl and the Coriolis force.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is A. Ekman pumping is driven by the interaction between wind stress curl and the Coriolis force.'}</p>
 
-            <p>Question 5: Your answer: ${userAnswers['q5']} - ${userAnswers['q5'] === 'C' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: Loops allow for efficient repetitive processing of tasks or large datasets.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is C. Loops allow for repetitive processing of tasks or large datasets.'}</p>            
+            <p>Question 6: Your answer: ${userAnswers['q6']} - ${userAnswers['q6'] === 'B' ? '<span style="color: #468499;"><strong>Correct!</strong></span>: Standard Ekman theory breaks down at the equator because the Coriolis parameter becomes zero, making the usual balance equations invalid.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is B. Standard Ekman theory breaks down at the equator because the Coriolis parameter becomes zero, making the usual balance equations invalid.'}</p>            
         `;
             document.getElementById('finalMessage').style.display = 'block'; // Zeige die Zusammenfassung
     }
