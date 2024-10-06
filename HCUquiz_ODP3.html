@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oceanographic Data Processing - Test your Knowledge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        #svg-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        #header {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #logo {
+            max-width: 150px;
+        }
+
+        #quiz-container, #start-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+        }
+
+        .question-container {
+            display: none;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        #start-container {
+            display: block;
+        }
+
+        #quiz-container {
+            display: none;
+        }
+
+        .options {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .options li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .options li input {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #468499;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #468499;
+        }
+
+        footer {
+            font-size: 12px;
+            color: #aaa;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            background-color: #222; /* Dunklerer Hintergrund für den Footer */
+            margin-top: auto; /* Stößt den Footer an das untere Ende */
+            position: fixed; /* Fixiert den Footer am unteren Rand */
+            bottom: 0;
+            left: 0;
+        }
+        footer a {
+            color: #7f3a20; /* Neue Farbe für die Links im Footer */
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        
+        .modal {
+            display: none; /* Standardmäßig verborgen */
+            position: fixed; /* Über die gesamte Seite legen */
+            z-index: 1000; /* Höherer Wert, damit es über allen anderen Inhalten liegt */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Halbtransparenter Hintergrund für Abdunkelung */
+        }
+
+        .modal-content {
+            background-color: #090909;
+            margin: 15% auto; /* Zentriert das Modal auf der Seite */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px; /* Maximale Breite für das Modal */
+            position: relative; /* Relativ zum Container */
+            color: rgb(253, 250, 250); /* Stellt sicher, dass der Text im Modal sichtbar ist */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Schatten für Tiefenwirkung */
+        }
+
+         /* Stil für den Link im GitHub Pages Modal */
+         #privacy-modal a {
+            color: #7f3a20; /* Neue Farbe für die Links im GitHub Pages Modal */
+            text-decoration: none;
+        }
+
+        #privacy-modal a:hover {
+            color: #468499; /* Farbe beim Hover im GitHub Pages Modal */
+            text-decoration: underline;
+        }
+                /* Stil für den Link im Edgar Modal */
+                #co2-modal a {
+            color: #7f3a20; /* Neue Farbe für die Links im Edgar Modal */
+            text-decoration: none;
+        }
+
+        #co2-modal a:hover {
+            color: #468499; /* Farbe beim Hover im Edgar Modal */
+            text-decoration: underline;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  
+<!-- Morlet Wavelet as SVG background -->
+<body style="background-image: url('Figures/transparent_morlet_wavelet.png'); background-size: cover; background-position: 30% 80%;"></body>
+
+
+<!-- Startseite -->
+<div id="start-container">
+    <h1>Welcome to the Oceanographic Data Processing Quiz No.3</h1>
+    <p>Test your Knowledge</p>
+    <button onclick="startQuiz()">Start the Quiz</button>
+</div>
+
+<div id="quiz-container">
+    <!-- Question 1 -->
+    <div class="question-container" id="question1">
+        <h2>Question 1: What is the primary use of the Fourier Transform in oceanographic data analysis?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q1" value="A"> A) To calculate wind stress.</li>
+            <li><input type="radio" name="q1" value="B"> B) To identify periodic signals within time series data.</li>
+            <li><input type="radio" name="q1" value="C"> C) To measure ocean salinity.</li>
+            <li><input type="radio" name="q1" value="D"> D) To compute Ekman transport.</li>
+        </ul>
+        <button onclick="checkAnswer('q1', 'B', 'question1', 'question2')">Submit</button>
+        <p id="result1"></p>
+        <button id="next1" onclick="showNextQuestion('question1', 'question2')" style="display:none;">Next</button>
+    </div>
+
+    <!-- Question 2 -->
+    <div class="question-container" id="question2">
+        <h2>Question 2: How does wavelet analysis differ from Fourier analysis?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q2" value="A"> A) Wavelet analysis is used for stationary signals.</li>
+            <li><input type="radio" name="q2" value="B"> B) Wavelet analysis provides both time and frequency localization.</li>
+            <li><input type="radio" name="q2" value="C"> C) Fourier analysis gives higher spatial resolution.</li>
+            <li><input type="radio" name="q2" value="D"> D) Both are equivalent.</li>
+        </ul>
+        <button onclick="checkAnswer('q2', 'B', 'question2', 'question3')">Submit</button>
+        <p id="result2"></p>
+        <button id="next2" onclick="showNextQuestion('question2', 'question3')" style="display:none;">Next</button>
+    </div>
+
+    <!-- Question 3 -->
+    <div class="question-container" id="question3">
+        <h2>Question 3: What is the primary and most common reason for calculating anomalies in time series data?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q3" value="A"> A) To remove random fluctuations or noise.</li>
+            <li><input type="radio" name="q3" value="B"> B) To highlight deviations from a long-term mean.</li>
+            <li><input type="radio" name="q3" value="C"> C) To extract dominant frequencies from the data.</li>
+            <li><input type="radio" name="q3" value="D"> D) To standardize the data by dividing by the long-term mean.</li>
+        </ul>
+        <button onclick="checkAnswer('q3', 'B', 'question3', 'question4')">Submit</button>
+        <p id="result3"></p>
+        <button id="next3" onclick="showNextQuestion('question3', 'question4')" style="display:none;">Next</button>
+    </div>
+
+    <!-- Question 4 -->
+    <div class="question-container" id="question4">
+        <h2>Question 4: What is RMSE (Root Mean Square Error)?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q4" value="A"> A) It measures the standard deviation of the differences between predicted and observed values.</li>
+            <li><input type="radio" name="q4" value="B"> B) It is a measure of the correlation between two datasets.</li>
+            <li><input type="radio" name="q4" value="C"> C) It represents the absolute maximum error in a dataset.</li>
+            <li><input type="radio" name="q4" value="D"> D) It calculates the sum of squared differences between observed and predicted values.</li>
+        </ul>
+        <button onclick="checkAnswer('q4', 'A', 'question4', 'question5')">Submit</button>
+        <p id="result4"></p>
+        <button id="next4" onclick="showNextQuestion('question4', 'question5')" style="display:none;">Next</button>
+    </div>
+
+
+   <!-- Question 5 -->
+    <div class="question-container" id="question5">
+        <h2>Question 5: What is the primary benefit of using object-oriented programming (OOP) in Python?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q5" value="A"> A) It enables code reusability and better organization by structuring code into classes and objects.</li>
+            <li><input type="radio" name="q5" value="B"> B) It guarantees faster execution of Python code.</li>
+            <li><input type="radio" name="q5" value="C"> C) It automatically enables parallel processing of data.</li>
+            <li><input type="radio" name="q5" value="D"> D) It makes programming more complex.</li>
+        </ul>
+        <button onclick="checkAnswer('q5', 'A', 'question5', 'question6')">Submit</button>
+        <p id="result5"></p>
+        <button id="next5" onclick="showNextQuestion('question5', 'question6')" style="display:none;">Next</button>
+    </div>
+
+
+    <!-- Question 6 -->
+    <div class="question-container" id="question6">
+        <h2>Question 6: How have we calculated the Mixed Layer Depth (MLD)?</h2>
+        <ul class="options">
+            <li><input type="radio" name="q6" value="A"> A) Using the temperature difference between the surface and a deeper layer.</li>
+            <li><input type="radio" name="q6" value="B"> B) Based on a density criterion comparing surface and subsurface layers.</li>
+            <li><input type="radio" name="q6" value="C"> C) By calculating the mean depth of the thermocline.</li>
+            <li><input type="radio" name="q6" value="D"> D) Using the wind speed at the ocean surface.</li>
+        </ul>
+        <button onclick="checkAnswer('q6', 'B', 'question6', '')">Submit</button>
+        <p id="result6"></p>
+        <button id="next6" onclick="showNextQuestion('question6', '')" style="display:none;">Summary</button>
+    </div>
+
+
+    <!-- Bereich für die Zusammenfassung -->
+    <div id="finalMessage" style="display:none;">
+        <h2>Done!</h2>
+        <p id="summary"></p>
+    </div>
+</div>
+
+<!-- Impressum am Ende der Seite -->
+<footer>
+    <p>
+        <a href="#" onclick="openModal(); return false;">GitHub Pages</a>
+    </p>
+</footer>
+
+<!-- Modal für GitHub Pages Datenschutzhinweise -->
+<div id="privacy-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>This website is hosted on GitHub Pages. GitHub may collect basic usage data, such as IP addresses and referrer information, for operational and maintenance purposes. For more information, please refer to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">GitHub Privacy Statement</a>.</p>
+    </div>
+</div>
+
+<!-- Modal für GitHub Pages Datenschutzhinweise -->
+<div id="privacy-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>This website is hosted on GitHub Pages. GitHub may collect basic usage data, such as IP addresses and referrer information, for operational and maintenance purposes. For more information, please refer to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">GitHub Privacy Statement</a>.</p>
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById('privacy-modal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('privacy-modal').style.display = 'none';
+    }
+    function startQuiz() {
+        document.getElementById('start-container').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        document.getElementById('question1').style.display = 'block';
+    }
+
+    const userAnswers = {};
+
+    function checkAnswer(questionName, correctAnswer, currentQuestionId, nextQuestionId) {
+        const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+        const result = document.getElementById(`result${currentQuestionId.slice(-1)}`);
+        const submitButton = document.querySelector(`#${currentQuestionId} button`);
+
+        if (selectedOption) {
+            const userAnswer = selectedOption.value;
+            userAnswers[questionName] = userAnswer;
+
+            let explanationCorrect;
+            let explanationIncorrect;
+
+            switch (questionName) {
+            case 'q1':
+                explanationCorrect = "Correct! Fourier Transform is primarily used to identify periodic signals within time series data.";
+                explanationIncorrect = "Wrong. Fourier Transform is primarily used to identify periodic signals within time series data.";
+                break;
+            case 'q2':
+                explanationCorrect = "Correct! Wavelet analysis provides both time and frequency localization, unlike Fourier analysis which only provides frequency localization.";
+                explanationIncorrect = "Wrong. Wavelet analysis provides both time and frequency localization, unlike Fourier analysis.";
+                break;
+            case 'q3':
+                explanationCorrect = "Correct! The primary reason for calculating anomalies is to highlight deviations from a long-term mean.";
+                explanationIncorrect = "Wrong. The primary reason for calculating anomalies is to highlight deviations from a long-term mean.";
+                break;
+            case 'q4':
+                explanationCorrect = "Correct! RMSE measures the standard deviation of the differences between predicted and observed values.";
+                explanationIncorrect = "Wrong. RMSE measures the standard deviation of the differences between predicted and observed values.";
+                break;
+            case 'q5':
+                explanationCorrect = "Correct! The primary benefit of OOP is that it enables code reusability and better organization by structuring code into classes and objects.";
+                explanationIncorrect = "Wrong. The primary benefit of OOP is that it enables code reusability and better organization by structuring code into classes and objects.";
+                break;
+            case 'q6':
+                explanationCorrect = "Correct! MLD is typically calculated based on a density criterion comparing surface and subsurface layers.";
+                explanationIncorrect = "Wrong. MLD is typically calculated based on a density criterion comparing surface and subsurface layers.";
+                break;
+            default:
+                explanationCorrect = "";
+                explanationIncorrect = "";
+        }
+
+
+            if (userAnswer === correctAnswer) {
+                result.textContent = explanationCorrect;
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#ff6666', '#468499', '#7f3a20', '#906472']
+                });
+            } else {
+                result.textContent = explanationIncorrect;
+            }
+
+            submitButton.style.display = 'none';
+            document.getElementById(`next${currentQuestionId.slice(-1)}`).style.display = 'block';
+
+        } else {
+            alert("Choose an answer.");
+        }
+    }
+
+    function showNextQuestion(currentQuestionId, nextQuestionId) {
+        document.getElementById(currentQuestionId).style.display = 'none';
+        if (nextQuestionId) {
+            document.getElementById(nextQuestionId).style.display = 'block';
+        } else {
+            showSummary();
+        }
+    }
+
+    function showSummary() {
+    const summary = document.getElementById('summary');
+    summary.innerHTML = '<h3>Your answers:</h3>';
+    summary.innerHTML += `
+        <p>Question 1: Your answer: ${userAnswers['q1']} - ${userAnswers['q1'] === 'B' ? '<span style="color: #468499;"><strong>Correct!</strong></span> Fourier Transform is used to identify periodic signals within time series data.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is B. Fourier Transform is used to identify periodic signals within time series data.'}</p>
+
+        <p>Question 2: Your answer: ${userAnswers['q2']} - ${userAnswers['q2'] === 'B' ? '<span style="color: #468499;"><strong>Correct!</strong></span> Wavelet analysis provides both time and frequency localization.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is B. Wavelet analysis provides both time and frequency localization.'}</p>
+
+        <p>Question 3: Your answer: ${userAnswers['q3']} - ${userAnswers['q3'] === 'B' ? '<span style="color: #468499;"><strong>Correct!</strong></span> Anomalies are calculated to highlight deviations from a long-term mean.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is B. Anomalies are calculated to highlight deviations from a long-term mean.'}</p>
+
+        <p>Question 4: Your answer: ${userAnswers['q4']} - ${userAnswers['q4'] === 'A' ? '<span style="color: #468499;"><strong>Correct!</strong></span> RMSE measures the standard deviation of the differences between predicted and observed values.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is A. RMSE measures the standard deviation of the differences between predicted and observed values.'}</p>
+
+        <p>Question 5: Your answer: ${userAnswers['q5']} - ${userAnswers['q5'] === 'A' ? '<span style="color: #468499;"><strong>Correct!</strong></span> OOP enables code reusability and better organization by structuring code into classes and objects.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is A. OOP enables code reusability and better organization by structuring code into classes and objects.'}</p>
+
+        <p>Question 6: Your answer: ${userAnswers['q6']} - ${userAnswers['q6'] === 'B' ? '<span style="color: #468499;"><strong>Correct!</strong></span> MLD is typically calculated based on a density criterion comparing surface and subsurface layers.' : '<span style="color: red;"><strong>Wrong.</strong></span> The correct answer is B. MLD is typically calculated based on a density criterion comparing surface and subsurface layers.'}</p>
+    `;
+    document.getElementById('finalMessage').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
+
+    
